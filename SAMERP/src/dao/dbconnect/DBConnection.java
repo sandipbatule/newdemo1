@@ -1,0 +1,45 @@
+package dao.dbconnect;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class DBConnection {
+
+
+	String driverName = "com.mysql.jdbc.Driver";
+	String url = "jdbc:mysql://127.0.0.1:3306/";
+	String dbName = "samerp";
+	String userName = "root";
+	String password = "root";
+	Connection con;
+	int rowsInserted=0;
+	ResultSet rs;
+
+//Creating connectin & loadig Driver
+	public Connection getConnection()
+	{
+		try
+		{
+			Class.forName(driverName);
+			con = DriverManager.getConnection(url+dbName,userName,password);
+		}
+		catch(ClassNotFoundException e)
+		{
+			System.out.println(e);
+		}
+		catch(SQLException se)
+		{
+			System.out.println(se);
+		}
+		return con;
+	}	
+	
+	
+	
+}
+
+
+
+
