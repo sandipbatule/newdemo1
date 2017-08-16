@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/bootstrap-wysihtml5.css" />
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
 <title>Add Client</title>
 </head>
 <body>
