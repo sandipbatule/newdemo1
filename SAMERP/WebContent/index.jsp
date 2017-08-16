@@ -67,8 +67,7 @@
 <!--End-breadcrumbs-->
 mukesh
 sandeep
-omkar
-sarang
+ sarang
 </div>
 
 <!--end-main-container-part-->
