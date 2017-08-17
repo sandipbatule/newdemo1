@@ -16,13 +16,7 @@ public class demou {
 		GenericDAO gd=new GenericDAO();
 		RequireData rd =new  RequireData();
 	
-		String getDetails="SELECT purchase_master.varinvoiceno,model_details_master.aliasnamemodel,"
-				+ "purchase_details.varimeino1,purchase_master.datePurchaseDate,purchase_master.inttotalbillamount"
-				+ " FROM purchase_details,purchase_master_details,model_details_master,purchase_master "
-				+ "WHERE purchase_master_details.intpurchase_master_detailsId=purchase_details.intpurchase_master_detailsId"
-				+ " and purchase_master_details.intmodelId=model_details_master.intmodelid "
-				+ "and purchase_master.intpurchase_masterId=purchase_master_details.intpurchase_masterId "
-				+ "and purchase_master.intbrandid=2";
+		String getDetails="SELECT * FROM `material_supply_master`";
 		
 		List l=gd.getData(getDetails);
 		System.out.println(l);
