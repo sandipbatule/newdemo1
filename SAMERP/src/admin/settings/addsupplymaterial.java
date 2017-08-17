@@ -40,7 +40,7 @@ public class addsupplymaterial extends HttpServlet {
 		PrintWriter out=response.getWriter();
 
 		//for inserting data into table
-		if(request.getParameter("ins")!=null)
+		if(request.getParameter("insertsupply")!=null)
 		{
 			GenericDAO gd=new GenericDAO();
 			String supBussName=request.getParameter("suppbusinesname");
