@@ -1,0 +1,147 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>SAMERP PROJECT</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/SAMERP/config/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/fullcalendar.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/matrix-style.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/matrix-media.css" />
+<link href="/SAMERP/config/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="/SAMERP/config/css/jquery.gritter.css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+  <h1><a href="dashboard.html">SAMERP PROJECT</a></h1>
+</div>
+
+<!--start-top-serch-->
+<div id="search">
+
+  <button type="submit" class="tip-bottom">LOGOUT</button>
+</div>
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+  <ul>
+    <li class="active"><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
+    <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
+    <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+    <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
+      <ul>
+        <li><a href="form-common.html">Basic Form</a></li>
+        <li><a href="form-validation.html">Form with Validation</a></li>
+        <li><a href="form-wizard.html">Form with Wizard</a></li>
+      </ul>
+    </li>
+    <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+    <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
+    <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">5</span></a>
+      <ul>
+        <li><a href="index2.html">Dashboard2</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="calendar.html">Calendar</a></li>
+        <li><a href="invoice.html">Invoice</a></li>
+        <li><a href="chat.html">Chat option</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+
+
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    <h1>Form wizard</h1>
+  </div>
+  <div class="container-fluid"><hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
+            <h5>Form wizard &amp; validation</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form id="form-wizard" class="form-horizontal" method="post">
+                <div class="control-group">
+                  <label class="control-label">Username</label>
+                  <div class="controls">
+                    <input id="username" type="text" name="username" />
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label class="control-label">Username</label>
+                  <div class="controls">
+                    <input id="username" type="text" name="username" />
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label class="control-label">Username</label>
+                  <div class="controls">
+                    <input id="username" type="text" name="username" />
+                  </div>
+                </div>
+         
+              <div class="form-actions">
+                <input id="back" class="btn btn-primary" type="reset" value="Back" />
+                <input id="next" class="btn btn-primary" type="submit" value="Next" />
+                <div id="status"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
+</div>
+
+<!--end-Footer-part-->
+
+<script src="/SAMERP/config/js/excanvas.min.js"></script> 
+<script src="/SAMERP/config/js/jquery.min.js"></script> 
+<script src="/SAMERP/config/js/jquery.ui.custom.js"></script> 
+<script src="/SAMERP/config/js/bootstrap.min.js"></script> 
+<script src="/SAMERP/config/js/jquery.flot.min.js"></script> 
+<script src="/SAMERP/config/js/jquery.flot.resize.min.js"></script> 
+<script src="/SAMERP/config/js/jquery.peity.min.js"></script> 
+<script src="/SAMERP/config/js/fullcalendar.min.js"></script> 
+<script src="/SAMERP/config/js/matrix.js"></script> 
+<script src="/SAMERP/config/js/matrix.dashboard.js"></script> 
+<script src="/SAMERP/config/js/jquery.gritter.min.js"></script> 
+<script src="/SAMERP/config//SAMERP/config/js/matrix.interface.js"></script> 
+<script src="/SAMERP/config/js/matrix.chat.js"></script> 
+<script src="/SAMERP/config/js/jquery.validate.js"></script> 
+<script src="/SAMERP/config/js/matrix.form_validation.js"></script> 
+<script src="/SAMERP/config/js/jquery.wizard.js"></script> 
+<script src="/SAMERP/config/js/jquery.uniform.js"></script> 
+<script src="/SAMERP/config/js/select2.min.js"></script> 
+<script src="/SAMERP/config/js/matrix.popover.js"></script> 
+<script src="/SAMERP/config/js/jquery.dataTables.min.js"></script> 
+<script src="/SAMERP/config/js/matrix.tables.js"></script> 
+</body>
+</html>
