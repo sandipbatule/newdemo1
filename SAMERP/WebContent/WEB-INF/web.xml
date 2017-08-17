@@ -13,8 +13,15 @@
     <servlet-name>AddSupplyMaterial</servlet-name>
     <url-pattern>/addSupplyMaterial</url-pattern>
   </servlet-mapping>
-  
   <servlet>
+    <servlet-name>AddVehicles</servlet-name>
+    <servlet-class>admin.settings.AddVehicles</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddVehicles</servlet-name>
+    <url-pattern>/AddVehicles</url-pattern>
+  </servlet-mapping>
+   <servlet>
     <description></description>
     <servlet-name>AddAccountDetails</servlet-name>
     <servlet-class>admin.settings.AddAccountDetails</servlet-class>
