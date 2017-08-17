@@ -12,7 +12,7 @@ public class DBConnection {
 	String url = "jdbc:mysql://127.0.0.1:3306/";
 	String dbName = "samerp";
 	String userName = "root";
-	String password = "root";
+	String password = "";
 	Connection con;
 	int rowsInserted=0;
 	ResultSet rs;
