@@ -9,13 +9,12 @@
 <title>SAMERP PROJECT</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="/SAMERP/config/css/jquery.mobile-1.4.5.css">
-<link href="/SAMERP/config/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/SAMERP/config/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/fullcalendar.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-style.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-media.css" />
+<link href="/SAMERP/config/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/SAMERP/config/css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
@@ -83,15 +82,13 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li><a href="/SAMERP/index.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li class="submenu active open"> <a href="#"><i class="icon icon-th-list"></i> <span>Settings</span> <span class="label label-important">7</span></a>
+    <li class="submenu active open"> <a href="#"><i class="icon icon-th-list"></i> <span>Settings</span> <span class="label label-important">3</span></a>
       <ul>
-        <li class="active"><a href="/SAMERP/jsp/admin/settings/addMaterialSuppliers.jsp">Add Material Supplier</a></li>
-        <li><a href="/SAMERP/jsp/admin/settings/addEmployee.jsp">Add Employee</a></li>
-        <li><a href="/SAMERP/jsp/admin/settings/addOrganization.jsp">Add Organization</a></li>
-        <li><a href="/SAMERP/jsp/admin/settings/addAccountDetails.jsp">Add Account Details</a></li> 
+        <li><a href="/SAMERP/jsp/admin/settings/addMaterialSuppliers.jsp">Add Material Suppliers</a></li>
+        <li class="active"><a href="/SAMERP/jsp/admin/settings/addAccountDetails.jsp">Add Account Details</a></li>
       </ul>
     </li>
-    <li> <a href="/SAMERP/jsp/admin/settings/expenses.jsp"><i class="icon icon-money"></i> <span>Expenses</span></a> </li>
+    <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a> </li>
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
     <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
     <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
@@ -112,97 +109,93 @@
 
 <!--main-container-part-->
 <div id="content">
-	<!--breadcrumbs-->
-	  <div id="content-header">
-	    <div id="breadcrumb"> <a href="index.html" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home">
-	    </i> Home</a> <a href="#" class="current">Add Material Suppliers</a> </div>
-	  </div>
-	<!--End-breadcrumbs-->
+<!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="index.html" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home">
+    </i> Home</a> <a href="#" class="current">Add Account Details</a> </div>
+  </div>
+<!--End-breadcrumbs-->
 <div class="container-fluid">
   <hr>
-  <div class="row-fluid">
-    <div class="span7">
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Add Data</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <form action="/SAMERP/addSupplyMaterial" method="post" class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label">Suppliers-Business Name:</label>
-              <div class="controls">
-                <input type="text" name="suppbusinesname" class="span11" placeholder="Suppliers-Business Name" />
+      <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
+            <h5>Form wizard &amp; validation</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form id="form-wizard" class="form-horizontal" action="/SAMERP/AddAccountDetails" method="post">
+                <div class="control-group">
+                  <label class="control-label">Bank Name</label>
+                  <div class="controls">
+                    <input type="text" id="bankName" name="bankName" />
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label class="control-label">Branch</label>
+                  <div class="controls">
+                    <input type="text" name="branch" />
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label class="control-label">Account No</label>
+                  <div class="controls">
+                    <input type="text" name="accNo" />
+                  </div>
+                </div>
+                
+                <div class="control-group" >
+                  <label class="control-label">Opening Balance</label>
+                  <div class="controls">
+                    <input type="text" name="openingBalance" />
+                  </div>
+                </div>
+         
+              <div class="form-actions" align="center">
+                <input class="btn btn-success" name="insertAccDetails" type="submit" value="OK" />
+                <input class="btn btn-danger" type="button" value="Cancel" />
+                <div id="status"></div>
               </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Suppliers Name:</label>
-              <div class="controls">
-                <input type="text" name="suppname" class="span11" placeholder="Suppliers Name" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Suppliers Address</label>
-              <div class="controls">
-                <input type="text" name="address" class="span11" placeholder="Suppliers Address"  />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Suppliers Contact :</label>
-              <div class="controls">
-                <input type="text" name="contact" class="span11" placeholder="Suppliers Contact" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Opening Balance :</label>
-              <div class="controls">
-                <input type="number" name="openingbalance" class="span11" placeholder="Opening Balance" />
-              </div>
-            </div>
-            <div class="form-actions">
-            <button type="submit" name="insertsupply" class="btn btn-success" style="position:relative; right:130px;float:right;">OK</button>
-              <a href="/SAMERP/index.jsp"><button type="button" class="btn btn-danger " style="position:relative; left:20px;float:right;">CANCEL</button></a>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <div class="row-fluid">
-  	<div class="span11">
+  	<div class="span12">
   		<div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
             <h5>Suppliers Material Data</h5>
-            <a href="#myPopup" data-rel="popup" data-transition="pop">Pop</a>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
                   <th>S.No.</th>
-                  <th>Supplier's Business Name</th>
-                  <th>Supplier'Name</th>
-                  <th>Address</th>
-                  <th>Contact</th>
+                  <th>Bank Name</th>
+                  <th>Branch</th>
+                  <th>Account No</th>
                   <th>Opening Balance</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
               <%RequireData rd=new RequireData();
-              	List getMSPData=rd.getMaterialSupplyData();
-              	if(getMSPData!=null){
-              	Iterator itr=getMSPData.iterator();
-              	int i=1;
-              	while(itr.hasNext()){ Object mspId=itr.next();
-              	%>
+              	List getAccData=rd.getAccountDetails();
+            	if(getAccData!=null){
+            	Iterator itr=getAccData.iterator();
+            	int i=1;
+            	while(itr.hasNext()){ Object accId=itr.next();
+              %>
                 <tr>
                   <td style="text-align: center"><%=i %><% i++; %></td>
-                  <td style="text-align: center" value="<%=mspId%>"><%=itr.next() %></td>
+                  <td style="text-align: center" value="<%=accId%>"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><a href="#">Update</a>|<a href="/SAMERP/addSupplyMaterial?deleteId=<%=mspId%>">Delete</a></td>
+                  <td style="text-align: center"><a href="#">Update</a>|<a href="/SAMERP/AddAccountDetails?deleteId=<%=accId%>">Delete</a></td>
                 </tr>
                 <%}} %>
               </tbody>
@@ -227,13 +220,12 @@
 
 <script>
 function myFunction() {
+	document.getElementById("bankName").focus();
     var x = document.getElementById("snackbar")
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 </script>
-<script src="/SAMERP/config/js/jquery-1.11.3.js"></script>
-<script src="/SAMERP/config/js/jquery.mobile-1.4.5.js"></script>
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.ui.custom.js"></script> 
