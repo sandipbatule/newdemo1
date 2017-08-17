@@ -28,6 +28,13 @@ public class RequireData
 	
 	// sarang start
 	
+	public List getEmployeeData()
+	{
+		String demo="select * from emplyoee_details";
+		List demoList=gd.getData(demo);
+		return demoList;
+	}
+	
 		//--sarang end
 	
 	// vijay start

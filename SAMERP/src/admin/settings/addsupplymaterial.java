@@ -59,7 +59,7 @@ public class addsupplymaterial extends HttpServlet {
 			{
 				System.out.println("successfully inserted in suppliers material");
 				request.setAttribute("status", "Inserted Successfully");
-				RequestDispatcher rd=request.getRequestDispatcher("jsp/AddMaterialSuppliers.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("jsp/admin/settings/addMaterialSuppliers.jsp");
 				rd.forward(request, response);
 			}
 		}
@@ -73,7 +73,7 @@ public class addsupplymaterial extends HttpServlet {
 			{
 				System.out.println("successfully deleted in suppliers material");
 				request.setAttribute("status", "Deleted Successfully");
-				RequestDispatcher rd=request.getRequestDispatcher("jsp/AddMaterialSuppliers.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("jsp/admin/settings/addMaterialSuppliers.jsp");
 				rd.forward(request, response);
 			}
 			

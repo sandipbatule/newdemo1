@@ -4,19 +4,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <html lang="en">
 <head>
 <title>SAMERP PROJECT</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="/SAMERP/config/css/jquery.mobile-1.4.5.css">
-<link href="/SAMERP/config/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/SAMERP/config/css/bootstrap.min.css" />
+<link href="/SAMERP/config/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/SAMERP/config/css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="/SAMERP/config/css/fullcalendar.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/colorpicker.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/datepicker.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/uniform.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/select2.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-style.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-media.css" />
-<link rel="stylesheet" href="/SAMERP/config/css/jquery.gritter.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/bootstrap-wysihtml5.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <style>
@@ -83,15 +89,14 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li><a href="/SAMERP/index.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li class="submenu active open"> <a href="#"><i class="icon icon-th-list"></i> <span>Settings</span> <span class="label label-important">7</span></a>
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Settings</span> <span class="label label-important">7</span></a>
       <ul>
-        <li class="active"><a href="/SAMERP/jsp/admin/settings/addMaterialSuppliers.jsp">Add Material Supplier</a></li>
+        <li><a href="/SAMERP/jsp/admin/settings/addMaterialSuppliers.jsp">Add Material Supplier</a></li>
         <li><a href="/SAMERP/jsp/admin/settings/addEmployee.jsp">Add Employee</a></li>
         <li><a href="/SAMERP/jsp/admin/settings/addOrganization.jsp">Add Organization</a></li>
-        
       </ul>
     </li>
-    <li> <a href="/SAMERP/jsp/admin/settings/expenses.jsp"><i class="icon icon-money"></i> <span>Expenses</span></a> </li>
+    <li  class="active"> <a href="/SAMERP/jsp/admin/settings/expenses.jsp"><i class="icon icon-money"></i> <span>Expenses</span></a> </li>
     <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a> </li>
     <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
     <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
@@ -115,104 +120,122 @@
 <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.html" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home">
-    </i> Home</a> <a href="#" class="current">Add Material Suppliers</a> </div>
+    </i> Home</a> <a href="#" class="current">Expenses</a> </div>
   </div>
 <!--End-breadcrumbs-->
 <div class="container-fluid">
   <hr>
   <div class="row-fluid">
-    <div class="span7">
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Add Data</h5>
+    <div class="span6">
+	   <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-group"></i> </span>
+          <h5>GIVEN TO:-</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="/SAMERP/addSupplyMaterial" method="post" class="form-horizontal">
+          <form action="#" method="get" class="form-horizontal">
             <div class="control-group">
-              <label class="control-label">Suppliers-Business Name:</label>
+              <label class="control-label">Giving To :</label>
               <div class="controls">
-                <input type="text" name="suppbusinesname" class="span11" placeholder="Suppliers-Business Name" />
+                <input type="text" class="span11" id="name" placeholder="Name" />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Suppliers Name:</label>
+              <label class="control-label">Reason :</label>
               <div class="controls">
-                <input type="text" name="suppname" class="span11" placeholder="Suppliers Name" />
+                <select class="span11">
+                  <option>Diesel</option>
+                  <option>Home</option>
+                  <option>Salary</option>
+                  <option>Travels</option>
+                  <option>Puncture</option>
+                </select>
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Suppliers Address</label>
+              <label class="control-label">Date :</label>
               <div class="controls">
-                <input type="text" name="address" class="span11" placeholder="Suppliers Address"  />
+                <input type="text" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="17-08-2017" class="datepicker span11">
+                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Details :</label>
+              <div class="controls">
+                <select class="span11">
+                  <option>Cash</option>
+                  <option>Cheque</option>
+                  <option>Puncture</option>
+                </select>
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Suppliers Contact :</label>
+              <label class="control-label">Other Details :</label>
               <div class="controls">
-                <input type="text" name="contact" class="span11" placeholder="Suppliers Contact" />
+                <textarea class="span11" ></textarea>
               </div>
             </div>
-            <div class="control-group">
-              <label class="control-label">Opening Balance :</label>
-              <div class="controls">
-                <input type="number" name="openingbalance" class="span11" placeholder="Opening Balance" />
-              </div>
-            </div>
-            <div class="form-actions">
-            <button type="submit" name="insertsupply" class="btn btn-success" style="position:relative; right:130px;float:right;">OK</button>
-              <a href="/SAMERP/index.jsp"><button type="button" class="btn btn-danger " style="position:relative; left:20px;float:right;">CANCEL</button></a>
+            <div class="form-actions" align="right">
+              <button type="submit" class="btn btn-success">Save</button>
             </div>
           </form>
         </div>
       </div>
-    </div>
   </div>
-  <div class="row-fluid">
-  	<div class="span11">
-  		<div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
-            <h5>Suppliers Material Data</h5>
-            <a href="#myPopup" data-rel="popup" data-transition="pop">Pop</a>
-          </div>
-          <div class="widget-content nopadding">
-            <table class="table table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>S.No.</th>
-                  <th>Supplier's Business Name</th>
-                  <th>Supplier'Name</th>
-                  <th>Address</th>
-                  <th>Contact</th>
-                  <th>Opening Balance</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-              <%RequireData rd=new RequireData();
-              	List getMSPData=rd.getMaterialSupplyData();
-              	if(getMSPData!=null){
-              	Iterator itr=getMSPData.iterator();
-              	int i=1;
-              	while(itr.hasNext()){ Object mspId=itr.next();
-              	%>
-                <tr>
-                  <td style="text-align: center"><%=i %><% i++; %></td>
-                  <td style="text-align: center" value="<%=mspId%>"><%=itr.next() %></td>
-                  <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><a href="#">Update</a>|<a href="/SAMERP/addSupplyMaterial?deleteId=<%=mspId%>">Delete</a></td>
-                </tr>
-                <%}} %>
-              </tbody>
-            </table>
-          </div>
+  <div class="span6">
+	    <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-group"></i> </span>
+          <h5>TAKEN FROM:-</h5>
         </div>
-  	</div>
+        <div class="widget-content nopadding">
+          <form action="#" method="get" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">Recieve From :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Name" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Reason :</label>
+              <div class="controls">
+                <select class="span11">
+                  <option>Diesel</option>
+                  <option>Home</option>
+                  <option>Salary</option>
+                  <option>Travels</option>
+                  <option>Puncture</option>
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Date :</label>
+              <div class="controls">
+                <input type="text" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="17-08-2017" class="datepicker span11">
+                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Details :</label>
+              <div class="controls">
+                <select class="span11">
+                  <option>Cash</option>
+                  <option>Cheque</option>
+                  <option>Puncture</option>
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Other Details :</label>
+              <div class="controls">
+                <textarea class="span11" ></textarea>
+              </div>
+            </div>
+            <div class="form-actions" align="right">
+              <button type="submit" class="btn btn-success">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
   </div>
 </div>
-
+</div>
 </div>
 
 <!--end-main-container-part-->
@@ -227,33 +250,29 @@
 
 <script>
 function myFunction() {
+	document.getElementById("name").focus();
     var x = document.getElementById("snackbar")
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 </script>
-<script src="/SAMERP/config/js/jquery-1.11.3.js"></script>
-<script src="/SAMERP/config/js/jquery.mobile-1.4.5.js"></script>
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.ui.custom.js"></script> 
 <script src="/SAMERP/config/js/bootstrap.min.js"></script> 
-<script src="/SAMERP/config/js/jquery.flot.min.js"></script> 
-<script src="/SAMERP/config/js/jquery.flot.resize.min.js"></script> 
-<script src="/SAMERP/config/js/jquery.peity.min.js"></script> 
-<script src="/SAMERP/config/js/fullcalendar.min.js"></script> 
-<script src="/SAMERP/config/js/matrix.js"></script> 
-<script src="/SAMERP/config/js/matrix.dashboard.js"></script> 
-<script src="/SAMERP/config/js/jquery.gritter.min.js"></script> 
-<script src="/SAMERP/config//SAMERP/config/js/matrix.interface.js"></script> 
-<script src="/SAMERP/config/js/matrix.chat.js"></script> 
-<script src="/SAMERP/config/js/jquery.validate.js"></script> 
-<script src="/SAMERP/config/js/matrix.form_validation.js"></script> 
-<script src="/SAMERP/config/js/jquery.wizard.js"></script> 
+<script src="/SAMERP/config/js/bootstrap-colorpicker.js"></script> 
+<script src="/SAMERP/config/js/bootstrap-datepicker.js"></script> 
+<script src="/SAMERP/config/js/jquery.toggle.buttons.js"></script> 
+<script src="/SAMERP/config/js/masked.js"></script> 
 <script src="/SAMERP/config/js/jquery.uniform.js"></script> 
 <script src="/SAMERP/config/js/select2.min.js"></script> 
-<script src="/SAMERP/config/js/matrix.popover.js"></script> 
-<script src="/SAMERP/config/js/jquery.dataTables.min.js"></script> 
-<script src="/SAMERP/config/js/matrix.tables.js"></script> 
+<script src="/SAMERP/config/js/matrix.js"></script> 
+<script src="/SAMERP/config/js/matrix.form_common.js"></script> 
+<script src="/SAMERP/config/js/wysihtml5-0.3.0.js"></script> 
+<script src="/SAMERP/config/js/jquery.peity.min.js"></script> 
+<script src="/SAMERP/config/js/bootstrap-wysihtml5.js"></script> 
+<script>
+$('.textarea_editor').wysihtml5();
+</script>
 </body>
 </html>
