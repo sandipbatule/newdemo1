@@ -16,7 +16,14 @@ public class RequireData
 	
 	// mukesh start
 	
-		//--mukesh end
+		public List getVehiclesData()
+		{
+			String vehicleDetailsQuery = "select * from vehicle_details order by vehicle_id desc;";
+			List vehicleDetailsData = gd.getData(vehicleDetailsQuery);
+			return vehicleDetailsData;
+		}
+		
+	//--mukesh end
 	
 	// omkar start
 	
