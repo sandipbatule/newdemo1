@@ -72,7 +72,6 @@ public class addsupplymaterial extends HttpServlet {
 			if(delstatus!=0)
 			{
 				System.out.println("successfully deleted in suppliers material");
-				
 				RequestDispatcher rd=request.getRequestDispatcher("jsp/AddMaterialSuppliers.jsp");
 				rd.forward(request, response);
 			}
