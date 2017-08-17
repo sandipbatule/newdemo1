@@ -18,7 +18,51 @@
 <link rel="stylesheet" href="/SAMERP/config/css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<style>
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 15px;
+    border-radius:50px 50px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+</style>
+<body onload="myFunction()">
 
 <!--Header-part-->
 <div id="header">
@@ -27,6 +71,9 @@
 
 <!--start-top-serch-->
 <div id="search">
+<% if(request.getAttribute("status")!=null){ %>
+<div id="snackbar"><%=request.getAttribute("status")%></div>
+<%} %>
 
   <button type="submit" class="tip-bottom">LOGOUT</button>
 </div>
@@ -35,9 +82,9 @@
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
   <ul>
     <li><a href="index.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-    <li class="submenu active"> <a href="#"><i class="icon icon-th-list"></i> <span>Settings</span> <span class="label label-important">3</span></a>
+    <li class="submenu active open"> <a href="#"><i class="icon icon-th-list"></i> <span>Settings</span> <span class="label label-important">3</span></a>
       <ul>
-        <li><a href="/SAMERP/jsp/AddMaterialSuppliers.jsp">Add Material Suppliers</a></li>
+        <li class="active"><a href="/SAMERP/jsp/AddMaterialSuppliers.jsp">Add Material Suppliers</a></li>
         
       </ul>
     </li>
@@ -174,7 +221,13 @@
 
 <!--end-Footer-part-->
 
-
+<script>
+function myFunction() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.ui.custom.js"></script> 

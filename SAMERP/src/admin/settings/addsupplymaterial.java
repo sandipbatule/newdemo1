@@ -38,9 +38,9 @@ public class addsupplymaterial extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
-		
+
 		//for inserting data into table
-		if(request.getParameter("insertsupply")!=null)
+		if(request.getParameter("ins")!=null)
 		{
 			GenericDAO gd=new GenericDAO();
 			String supBussName=request.getParameter("suppbusinesname");
@@ -58,7 +58,7 @@ public class addsupplymaterial extends HttpServlet {
 			if(status!=0)
 			{
 				System.out.println("successfully inserted in suppliers material");
-				
+				request.setAttribute("status", "Inserted Successfully");
 				RequestDispatcher rd=request.getRequestDispatcher("jsp/AddMaterialSuppliers.jsp");
 				rd.forward(request, response);
 			}
@@ -69,10 +69,10 @@ public class addsupplymaterial extends HttpServlet {
 			int delstatus=0;
 			String deleteQuery="Delete from `material_supply_master` where supplier_business_id="+request.getParameter("deleteId");
 			delstatus=gd.executeCommand(deleteQuery);
-			int demoStatus=50;
 			if(delstatus!=0)
 			{
 				System.out.println("successfully deleted in suppliers material");
+				request.setAttribute("status", "Deleted Successfully");
 				RequestDispatcher rd=request.getRequestDispatcher("jsp/AddMaterialSuppliers.jsp");
 				rd.forward(request, response);
 			}

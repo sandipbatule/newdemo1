@@ -36,7 +36,6 @@ public class RequireData
 	{
 		String demo="select * from material_supply_master";
 		List demoList=gd.getData(demo);
-		System.out.println(demoList);
 		return demoList;
 	}
 	
