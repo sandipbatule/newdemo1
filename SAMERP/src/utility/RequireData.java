@@ -20,7 +20,14 @@ public class RequireData
 	
 	// omkar start
 	
-		//--omkar end
+	public List getAccountDetails()
+	{
+		String demo="select * from account_details";
+		List demoList=gd.getData(demo);
+		return demoList;
+	}	
+	
+	//--omkar end
 	
 	// sandeep start
 	
