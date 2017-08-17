@@ -68,7 +68,8 @@ public class addsupplymaterial extends HttpServlet {
 			GenericDAO gd=new GenericDAO();
 			int delstatus=0;
 			String deleteQuery="Delete from `material_supply_master` where supplier_business_id="+request.getParameter("deleteId");
-			delstatus=gd.executeCommand(deleteQuery);	
+			delstatus=gd.executeCommand(deleteQuery);
+			int demoStatus=50;
 			if(delstatus!=0)
 			{
 				System.out.println("successfully deleted in suppliers material");
