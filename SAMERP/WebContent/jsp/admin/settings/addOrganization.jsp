@@ -88,6 +88,7 @@
         <li><a href="/SAMERP/jsp/admin/settings/addMaterialSuppliers.jsp">Add Material Supplier</a></li>
         <li><a href="/SAMERP/jsp/admin/settings/addEmployee.jsp">Add Employee</a></li>
         <li class="active"><a href="/SAMERP/jsp/admin/settings/addOrganization.jsp">Add Organization</a></li>
+      	<li><a href="/SAMERP/jsp/admin/settings/addAccountDetails.jsp">Add Account Details</a></li>
       </ul>
     </li>
     
