@@ -25,7 +25,7 @@
 <!--start-top-serch-->
 <div id="search">
 
-  <button type="submit" class="tip-bottom">LOGOU</button>
+  <button type="submit" class="tip-bottom">LOGOUT</button>
 </div>
 <!--close-top-serch-->
 <!--sidebar-menu-->
