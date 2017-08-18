@@ -75,8 +75,8 @@
 <!--End-breadcrumbs-->
 mukesh
 sandeep
- Sarang
-    Vijay Ranka
+Sarang
+Vijay Ranka
 </div>
 
 <!--end-main-container-part-->
