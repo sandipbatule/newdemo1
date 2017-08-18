@@ -16,7 +16,10 @@
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-media.css" />
 <link href="/SAMERP/config/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/SAMERP/config/css/jquery.gritter.css" />
+
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
 </head>
 <style>
 #snackbar {
@@ -61,6 +64,27 @@
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+/* .modal.fade .modal-dialog {
+  -webkit-transform: scale(0.1);
+-moz-transform: scale(0.1);
+-ms-transform: scale(0.1);
+transform: scale(0.1);
+top: 300px;
+opacity: 0;
+-webkit-transition: all 0.3s;
+-moz-transition: all 0.3s;
+transition: all 0.3s;
+}
+.modal.in .modal-dialog {
+ -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform: translate3d(0, -300px, 0);
+    transform: translate3d(0, -300px, 0);
+    opacity: 1;
+} */
 </style>
 <body onload="myFunction()">
 
@@ -128,14 +152,14 @@
                 <div class="control-group">
                   <label class="control-label">Bank Name</label>
                   <div class="controls">
-                    <input type="text" id="bankName" name="bankName" />
+                    <input type="text" id="bankName" name="bankName" onkeyup="this.value=this.value.toUpperCase()"/>
                   </div>
                 </div>
                 
                 <div class="control-group">
                   <label class="control-label">Branch</label>
                   <div class="controls">
-                    <input type="text" name="branch" />
+                    <input type="text" name="branch" onkeyup="this.value=this.value.toUpperCase()"/>
                   </div>
                 </div>
                 
@@ -196,8 +220,8 @@
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
-                   <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><a href="#">Update</a>|<a href="/SAMERP/AddAccountDetails?deleteId=<%=accId%>">Delete</a></td>
+                  <td style="text-align: center"><%=itr.next() %></td>
+                  <td style="text-align: center"><a href="#updateAccDetails" data-toggle="modal">Update</a>|<a href="/SAMERP/AddAccountDetails?deleteId=<%=accId%>">Delete</a></td>
                 </tr>
                 <%}} %>
               </tbody>
@@ -211,6 +235,24 @@
 </div>
 
 <!--end-main-container-part-->
+
+<div class="modal fade" id="updateAccDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--Footer-part-->
 
@@ -227,11 +269,13 @@ function myFunction() {
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
 </script>
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.min.js"></script> 
+
 <script src="/SAMERP/config/js/jquery.ui.custom.js"></script> 
-<script src="/SAMERP/config/js/bootstrap.min.js"></script> 
+<script src="/SAMERP/config/js/bootstrap.min.js"></script>
 <script src="/SAMERP/config/js/jquery.flot.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.flot.resize.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.peity.min.js"></script> 
@@ -239,7 +283,7 @@ function myFunction() {
 <script src="/SAMERP/config/js/matrix.js"></script> 
 <script src="/SAMERP/config/js/matrix.dashboard.js"></script> 
 <script src="/SAMERP/config/js/jquery.gritter.min.js"></script> 
-<script src="/SAMERP/config//SAMERP/config/js/matrix.interface.js"></script> 
+<script src="/SAMERP/config/js/matrix.interface.js"></script> 
 <script src="/SAMERP/config/js/matrix.chat.js"></script> 
 <script src="/SAMERP/config/js/jquery.validate.js"></script> 
 <script src="/SAMERP/config/js/matrix.form_validation.js"></script> 
