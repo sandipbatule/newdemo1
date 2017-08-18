@@ -59,7 +59,8 @@
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="calendar.html">Calendar</a></li>
         <li><a href="invoice.html">Invoice</a></li>
-        <li><a href="chat.html">Chat option</a></li>
+        <li><a href="chat.html">vijay option</a></li>
+        <li><a href="chat.html">ranka option</a></li>
       </ul>
     </li>
   </ul>
