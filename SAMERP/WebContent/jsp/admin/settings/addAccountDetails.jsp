@@ -143,6 +143,7 @@
                   <label class="control-label">Account No</label>
                   <div class="controls">
                     <input type="text" name="accNo" />
+			  <input type="text"/>
                   </div>
                 </div>
                 
