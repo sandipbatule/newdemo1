@@ -148,6 +148,7 @@
                   <option>Salary</option>
                   <option>Travels</option>
                   <option>Puncture</option>
+		  <option>Anyway</option>
                 </select>
               </div>
             </div>
