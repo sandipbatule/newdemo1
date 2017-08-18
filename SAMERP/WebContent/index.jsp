@@ -60,6 +60,7 @@
         <li><a href="calendar.html">Calendar</a></li>
         <li><a href="invoice.html">Invoice</a></li>
         <li><a href="chat.html">Chat option</a></li>
+        <li><a href="chat.html">OM option</a></li>
       </ul>
     </li>
   </ul>
