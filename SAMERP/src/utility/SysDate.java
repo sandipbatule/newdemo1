@@ -8,7 +8,7 @@ public class SysDate {
 		long millis=System.currentTimeMillis();  
 		java.sql.Date date=new java.sql.Date(millis); 
 	   String dateString = null;
-	   SimpleDateFormat sdfr = new SimpleDateFormat("yyyy-MM-dd");
+	   SimpleDateFormat sdfr = new SimpleDateFormat("dd-MM-yyyy");
 	   
 	   try{
 		dateString = sdfr.format( date );

@@ -127,7 +127,7 @@
           <h5>Add Employee</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="/SAMERP/addEmployee" method="post" class="form-horizontal">
+          <form action="/SAMERP/AddEmployee" method="post" class="form-horizontal">
             <div class="control-group">
               <label class="control-label"> Employee Name :</label>
               <div class="controls">
@@ -195,7 +195,7 @@
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><a href="#">Update</a>|<a href="/SAMERP/addEmployee?deleteId=<%=empId%>">Delete</a></td>
+                  <td style="text-align: center"><a href="#">Update</a>|<a href="/SAMERP/AddEmployee?deleteId=<%=empId%>">Delete</a></td>
                 </tr>
                 <%}} %>
               </tbody>
@@ -226,7 +226,7 @@ function myFunction() {
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    if (charCode > 31 && ( charCode < 48 || charCode > 57)) {
         return false;
     }
     return true;

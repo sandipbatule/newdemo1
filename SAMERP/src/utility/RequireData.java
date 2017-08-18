@@ -59,6 +59,19 @@ public class RequireData
 		List demoList=gd.getData(demo);
 		return demoList;
 	}
+	public List getBankAliasName()
+	{
+		String demo="SELECT account_details.acc_aliasname FROM account_details";
+		List demoList=gd.getData(demo);
+		return demoList;
+	}
+	public List getExpensesDetails()
+	{
+		String demo="SELECT * FROM expenses_master";
+		List demoList=gd.getData(demo);
+		return demoList;
+	}
+	
 	
 		//--vijay end
 	

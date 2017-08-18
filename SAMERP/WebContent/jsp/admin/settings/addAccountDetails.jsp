@@ -143,7 +143,6 @@
                   <label class="control-label">Account No</label>
                   <div class="controls">
                     <input type="text" name="accNo" />
-			  <input type="text"/>
                   </div>
                 </div>
                 
@@ -179,6 +178,7 @@
                   <th>Branch</th>
                   <th>Account No</th>
                   <th>Opening Balance</th>
+                  <th>Alias Name</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -196,6 +196,7 @@
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
+                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><a href="#">Update</a>|<a href="/SAMERP/AddAccountDetails?deleteId=<%=accId%>">Delete</a></td>
                 </tr>
                 <%}} %>

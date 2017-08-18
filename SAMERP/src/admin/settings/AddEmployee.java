@@ -15,14 +15,14 @@ import dao.General.GenericDAO;
 /**
  * Servlet implementation class addEmployee
  */
-@WebServlet("/addEmployee")
-public class addEmployee extends HttpServlet {
+//@WebServlet("/addEmployee")
+public class AddEmployee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addEmployee() {
+    public AddEmployee() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -63,11 +63,10 @@ public class addEmployee extends HttpServlet {
 			{
 				System.out.println("employee successfully inserted");
 				request.setAttribute("status", "Employee Inserted Successfully");
-				RequestDispatcher rd=request.getRequestDispatcher("jsp/addEmployee.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("jsp/admin/settings/addEmployee.jsp");
 				rd.forward(request, response);
 			}
 		}
-		
 		if(request.getParameter("deleteId")!=null)
 		{
 			int delstatus=0;
@@ -77,7 +76,7 @@ public class addEmployee extends HttpServlet {
 			{
 				System.out.println("employee successfully deleted");
 				request.setAttribute("status", "Employee Deleted Successfully");
-				RequestDispatcher rd=request.getRequestDispatcher("jsp/addEmployee.jsp");
+				RequestDispatcher rd=request.getRequestDispatcher("jsp/admin/settings/addEmployee.jsp");
 				rd.forward(request, response);
 			}
 			

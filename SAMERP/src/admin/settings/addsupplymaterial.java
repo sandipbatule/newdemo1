@@ -2,6 +2,8 @@ package admin.settings;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,7 +40,7 @@ public class addsupplymaterial extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
-
+		
 		//for inserting data into table
 		if(request.getParameter("insertsupply")!=null)
 		{

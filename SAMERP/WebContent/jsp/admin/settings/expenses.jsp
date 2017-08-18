@@ -1,3 +1,4 @@
+<%@page import="utility.SysDate"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="utility.RequireData"%>
@@ -132,110 +133,110 @@
           <h5>GIVEN TO:-</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
+          <form action="/SAMERP/Expenses.do" method="post" class="form-horizontal">
             <div class="control-group">
               <label class="control-label">Giving To :</label>
               <div class="controls">
-                <input type="text" class="span11" id="name" placeholder="Name" />
+                <input type="text" class="span11" id="name" name="name" placeholder="Name" />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Reason :</label>
+              <label class="control-label">Amount :</label>
               <div class="controls">
-                <select class="span11">
-                  <option>Diesel</option>
-                  <option>Home</option>
-                  <option>Salary</option>
-                  <option>Travels</option>
-                  <option>Puncture</option>
-		  <option>Anyway</option>
+                <input type="text" name="amount" class="span11" placeholder="Amount" />
+                </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Type :</label>
+              <div class="controls">
+                <select class="span11" name="type">
+                  <option selected >Select</option>
+                  <option value="CASH">CASH</option>
+                  <% RequireData rd=new RequireData();
+                  List aliasnamelist=rd.getBankAliasName();
+                  if(aliasnamelist!=null){
+	                  Iterator aliasitr=aliasnamelist.iterator();
+	                  while(aliasitr.hasNext()){
+	                  Object aliasname=aliasitr.next();%>
+                  <option value="<%=aliasname%>"><%=aliasname %></option>
+                  <%}} %>
                 </select>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Date :</label>
               <div class="controls">
-                <input type="text" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="17-08-2017" class="datepicker span11">
+              <% SysDate sd=new SysDate(); %>
+                <input name="date" type="text" data-date="<%=sd.todayDate() %>" data-date-format="dd-mm-yyyy" value="<%=sd.todayDate() %>" class="datepicker span11">
                 </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Details :</label>
-              <div class="controls">
-                <select class="span11">
-                  <option>Cash</option>
-                  <option>Cheque</option>
-                  <option>Puncture</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Other Details :</label>
-              <div class="controls">
-                <textarea class="span11" ></textarea>
-              </div>
-            </div>
-            <div class="form-actions" align="right">
-              <button type="submit" class="btn btn-success">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-  </div>
-  <div class="span6">
-	    <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-group"></i> </span>
-          <h5>TAKEN FROM:-</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label">Recieve From :</label>
-              <div class="controls">
-                <input type="text" class="span11" placeholder="Name" />
-              </div>
             </div>
             <div class="control-group">
               <label class="control-label">Reason :</label>
               <div class="controls">
-                <select class="span11">
-                  <option>Diesel</option>
-                  <option>Home</option>
-                  <option>Salary</option>
-                  <option>Travels</option>
-                  <option>Puncture</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Date :</label>
-              <div class="controls">
-                <input type="text" data-date="01-02-2013" data-date-format="dd-mm-yyyy" value="17-08-2017" class="datepicker span11">
-                </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Details :</label>
-              <div class="controls">
-                <select class="span11">
-                  <option>Cash</option>
-                  <option>Cheque</option>
-                  <option>Puncture</option>
-                </select>
+                <input type="text" name="details" class="span11" placeholder="Reason" />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Other Details :</label>
               <div class="controls">
-                <textarea class="span11" ></textarea>
+                <textarea class="span11" name="other_details" ></textarea>
               </div>
             </div>
             <div class="form-actions" align="right">
-              <button type="submit" class="btn btn-success">Save</button>
+              <button type="submit" name="save" class="btn btn-success">Save</button>
             </div>
           </form>
         </div>
       </div>
   </div>
 </div>
+  <div class="row-fluid">
+  	<div class="span12">
+  		<div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>Expenses :</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>S.No.</th>
+                  <th>Customer Name</th>
+                  <th>Amount</th>
+                  <th>Type</th>
+                  <th>Date</th>
+                  <th>Reason</th>
+                  <th>Other Details</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+              <%RequireData rd1=new RequireData();
+              	List getExpData=rd1.getExpensesDetails();
+            	if(getExpData!=null){
+            	Iterator getexpitr=getExpData.iterator();
+            	int i=1;
+            	while(getexpitr.hasNext()){ Object dataId=getexpitr.next();
+              %>
+                <tr>
+                  <td style="text-align: center"><%=i %><% i++; %></td>
+                  <td style="text-align: center" value="<%=dataId%>"><%=getexpitr.next() %></td>
+                  <td style="text-align: center"><%=getexpitr.next() %></td>
+                  <td style="text-align: center"><%=getexpitr.next() %></td>
+                  <td style="text-align: center"><%=getexpitr.next() %></td>
+                  <% Object detailsdata=getexpitr.next(); %>
+                   <td style="text-align: center"><%if(detailsdata.equals("")){ %>-<%} else{%><%=detailsdata %><%} %></td>
+                   <% Object otherdetailsdata=getexpitr.next(); %>
+                   <td style="text-align: center"><%if(otherdetailsdata.equals("")){ %>-<%} else{%><%=otherdetailsdata %><%} %></td>
+                  <td style="text-align: center"><a href="#">Update</a>|<a href="/SAMERP/Expenses.do?deleteId=<%=dataId%>">Delete</a></td>
+                </tr>
+                <%}} %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  	</div>
+  </div>
 </div>
 </div>
 
@@ -252,9 +253,36 @@
 <script>
 function myFunction() {
 	document.getElementById("name").focus();
-    var x = document.getElementById("snackbar")
+    var x = document.getElementById("snackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function searchName(str) {
+	
+		var xhttp;
+	if (str == "") {
+		return;
+	}
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			//document.getElementById("imeino").innerHTML = this.responseText;
+			var demoStr = this.responseText.split(",");
+			var text = "";
+			var i = 0
+			for (;demoStr[i];) 
+			{
+				text += "<option id="+demoStr[i]+ "</option>";
+				i++;
+			}	
+			document.getElementById("nameList").innerHTML = text;
+		}
+
+	};
+	
+	xhttp.open("POST", "//SAMERP/addSupplyMaterial?findName="+str, true);
+	xhttp.send();
+
 }
 </script>
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 

@@ -127,11 +127,11 @@
           <h5>Add Organization</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="/SAMERP/addEmployee" method="post" class="form-horizontal">
+          <form action="/SAMERP/AddOrganization" method="post" class="form-horizontal">
             <div class="control-group">
-              <label class="control-label"> Business Name :</label>
+              <label class="control-label"> Organization Name :</label>
               <div class="controls">
-                <input type="text" name="businessname" id="businessname" class="span6" placeholder="Business Name" onkeyup="this.value=this.value.toUpperCase()" required/>
+                <input type="text" name="organizationname" id="organizationname" class="span6" placeholder="Organization Name" onkeyup="this.value=this.value.toUpperCase()" required/>
               </div>
             </div>
             <div class="control-group">
@@ -143,8 +143,8 @@
             <div class="control-group">
               <label class="control-label">Contact No. :</label>
               <div class="controls">
-                <input type="text" name="contactno" class="span3" placeholder="Contact Number" onkeypress="return isNumber(event)" maxlength="10" required/> &nbsp; / &nbsp;
-                <input type="text" name="contactno" class="span3" placeholder="Contact Number" onkeypress="return isNumber(event)" maxlength="10" />
+                <input type="text" name="contactno1" class="span3" placeholder="Contact Number" onkeypress="return isNumber(event)" maxlength="10" required/> &nbsp; / &nbsp;
+                <input type="text" name="contactno2" class="span3" placeholder="Contact Number" onkeypress="return isNumber(event)" maxlength="10" />
               </div>
             </div>
             <div class="control-group">
@@ -159,9 +159,8 @@
                 <input type="text" name="logo" class="span6" placeholder="Logo" onkeyup="this.value=this.value.toUpperCase()" />
               </div>
             </div>
-
             <div class="form-actions" >
-            <button type="submit" name="insertemployee" class="btn btn-success"         style="position:relative; right:700px; float:right;">Submit</button>
+            <button type="submit" name="insertorganizer" class="btn btn-success"         style="position:relative; right:700px; float:right;">Submit</button>
               <a href="/SAMERP/index.jsp"><button type="button" class="btn btn-danger " style="position:relative; right:550px;   float:right;">Exit</button></a>
             </div>
           </form>
@@ -186,17 +185,24 @@
 <!--end-Footer-part-->
 
 <script>
+function myFunction() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    if (charCode > 31 && ( charCode < 48 || charCode > 57)) {
         return false;
     }
     return true;
 }
 
 function setFocusToTextBox() {
-	document.getElementById("businessname").focus();
+	document.getElementById("organizationname").focus();
+	myFunction();
 }
 </script>
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
