@@ -20,6 +20,7 @@
 !function( $ ) {
 	
 	// Picker object
+	document.getElementById("v").value="yo";
 	
 	var Datepicker = function(element, options){
 		this.element = $(element);

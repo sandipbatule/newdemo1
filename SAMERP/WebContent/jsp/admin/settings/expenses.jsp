@@ -34,14 +34,13 @@
     background-color: #333;
     color: #fff;
     text-align: center;
-    border-radius: 2px;
+    border-radius: 20px;
     padding: 16px;
     position: fixed;
     z-index: 1;
     left: 50%;
-    bottom: 30px;
-    font-size: 15px;
-    border-radius:50px 50px;
+    top: 250px;
+    font-size: 17px;
 }
 
 #snackbar.show {
@@ -51,24 +50,25 @@
 }
 
 @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
+    from {top: 0; opacity: 0;} 
+    to {top: 250px; opacity: 1;}
 }
 
 @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    from {top: 0; opacity: 0;}
+    to {top: 250px; opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
+    from {top: 250px; opacity: 1;} 
+    to {top: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {top: 250px; opacity: 1;}
+    to {top: 0; opacity: 0;}
 }
+
 </style>
 <body onload="myFunction()">
 
@@ -128,7 +128,7 @@
 <div class="container-fluid">
   <hr>
   <div class="row-fluid">
-    <div class="span6">
+    <div class="span6 pull-left">
 	   <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="icon-group"></i> </span>
           <h5>GIVEN TO:-</h5>
@@ -138,19 +138,20 @@
             <div class="control-group">
               <label class="control-label">Giving To :</label>
               <div class="controls">
-                <input type="text" class="span11" id="name" name="name" placeholder="Name" />
+                <input list="getList" id="name" onkeyup="searchName(this.value,this.id)" onblur="document.getElementById('getList').innerHTML='';" autocomplete="off" type="text" class="span11" name="name" placeholder="Name" required/>
+              	<datalist id="getList"></datalist>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Amount :</label>
               <div class="controls">
-                <input type="text" name="amount" class="span11" placeholder="Amount" />
+                <input type="text" name="amount" class="span11" placeholder="Amount" required/>
                 </div>
             </div>
             <div class="control-group">
               <label class="control-label">Type :</label>
               <div class="controls">
-                <select class="span11" name="type">
+                <select required class="span11" name="type">
                   <option selected >Select</option>
                   <option value="CASH">CASH</option>
                   <% RequireData rd=new RequireData();
@@ -174,7 +175,8 @@
             <div class="control-group">
               <label class="control-label">Reason :</label>
               <div class="controls">
-                <input type="text" name="details" class="span11" placeholder="Reason" />
+                <input type="text" id="reason" list="getList" name="reason" onkeyup="searchName(this.value,this.id)" class="span11" placeholder="Reason" autocomplete="off" required/>
+              	<datalist id=getList"></datalist>
               </div>
             </div>
             <div class="control-group">
@@ -183,8 +185,8 @@
                 <textarea class="span11" name="other_details" ></textarea>
               </div>
             </div>
-            <div class="form-actions" align="right">
-              <button type="submit" name="save" class="btn btn-success">Save</button>
+            <div class="form-actions">
+              <button type="submit" name="save" class="btn btn-success pull-right">Save</button>
             </div>
           </form>
         </div>
@@ -241,6 +243,7 @@
 </div>
 </div>
 
+
 <!--end-main-container-part-->
 
 <!--Footer-part-->
@@ -252,40 +255,39 @@
 <!--end-Footer-part-->
 
 <script>
+
 function myFunction() {
 	document.getElementById("name").focus();
     var x = document.getElementById("snackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
-function searchName(str) {
-	
-		var xhttp;
-	if (str == "") {
-		return;
+
+function searchName(str,id) {
+	if (str == " ") {
+		document.getElementById(id).value="";
 	}
-	xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			//document.getElementById("imeino").innerHTML = this.responseText;
-			var demoStr = this.responseText.split(",");
-			var text = "";
-			var i = 0
-			for (;demoStr[i];) 
-			{
-				text += "<option id="+demoStr[i]+ "</option>";
-				i++;
-			}	
-			document.getElementById("nameList").innerHTML = text;
+	else if(str==""){
+		document.getElementById("getList").innerHTML="";
+	}
+	else{
+		if(!document.getElementById(id).value==""){
+			var xhttp;
+			document.getElementById(id).value=str.toUpperCase();
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var demoStr = this.responseText;
+					document.getElementById("getList").innerHTML = demoStr;
+					}
+				};
+			xhttp.open("POST", "/SAMERP/Expenses.do?findName="+str+"&id="+id, true);
+			xhttp.send();
 		}
-
-	};
-	
-	xhttp.open("POST", "//SAMERP/addSupplyMaterial?findName="+str, true);
-	xhttp.send();
-
+	}
 }
-</script>
+
+</script>]
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.ui.custom.js"></script> 

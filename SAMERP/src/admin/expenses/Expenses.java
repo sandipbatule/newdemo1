@@ -42,22 +42,23 @@ public class Expenses extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		
 		//for finding name and fetch list
+		
 		if(request.getParameter("findName")!=null)
 		{
 			GenericDAO da = new GenericDAO();
+			String columnName=request.getParameter("id");
 			String name=request.getParameter("findName");
 			List details = null;
-				
-			String query = "";
-			System.out.println("query 1====" + query);
+			String query = "SELECT expenses_master."+columnName+" FROM expenses_master WHERE "+columnName+" LIKE '"+name+"%' group by "+columnName+"";
 			details = da.getData(query);
-
-			
-			Iterator itr = details.iterator();
-			while (itr.hasNext()) {
-				out.print(itr.next()+ ",");
-
-				}
+			if(!details.isEmpty())
+			{
+				Iterator itr = details.iterator();
+				while (itr.hasNext()) {
+					out.print("<option>"+itr.next()+"</option>");
+	
+					}
+			}
 		}
 		
 		if(request.getParameter("save")!=null)
@@ -69,9 +70,9 @@ public class Expenses extends HttpServlet {
 			String type=request.getParameter("type");
 			String date=request.getParameter("date");
 			String[] arrayOfString = date.split("-");
-			String details=request.getParameter("details");
+			String details=request.getParameter("reason");
 			String other_details=request.getParameter("other_details");
-			String query="INSERT INTO `expenses_master`(`name`, `amount`, `type`, `date`, `details`, `other_details`) "
+			String query="INSERT INTO `expenses_master`(`name`, `amount`, `type`, `date`, `reason`, `other_details`) "
 					+ "VALUES ('"+name+"',"+amount+",'"+type+"','"+arrayOfString[2]+"-"+arrayOfString[1]+"-"+arrayOfString[0]+"','"+details+"','"+other_details+"')";
 			getstatus=gd.executeCommand(query);
 			if(getstatus!=0)
