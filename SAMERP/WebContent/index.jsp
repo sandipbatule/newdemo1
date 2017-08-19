@@ -42,6 +42,8 @@
         <li><a href="/SAMERP/jsp/admin/settings/addClient.jsp">Add Clients</a></li>
 </ul>
     <li> <a href="/SAMERP/jsp/admin/settings/expenses.jsp"><i class="icon icon-money"></i> <span>Expenses</span></a> </li>
+
+    <li> <a href="/SAMERP/jsp/admin/jcb-poc work/jcb-pocDetails.jsp"><i class="icon icon-inbox"></i> <span>JCB/POC Detail</span></a> </li>
     <li> <a href="/SAMERP/jsp/admin/purchase/purchaseRawMaterial.jsp"><i class="icon icon-inbox"></i> <span>Purchase Raw Material</span></a> </li>
     <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
     <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
@@ -80,7 +82,7 @@ mukesh
 sandeep is back
 Sarang
 Vijay Ranka<br>
-himanshu patel is back
+himanshu patel
 </div>
 
 <!--end-main-container-part-->
