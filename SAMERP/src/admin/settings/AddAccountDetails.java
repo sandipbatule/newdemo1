@@ -2,6 +2,8 @@ package admin.settings;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.java.swing.plaf.motif.resources.motif;
+
 import dao.General.GenericDAO;
+import utility.RequireData;
 
 //@WebServlet("/AddAccountDetails")
 public class AddAccountDetails extends HttpServlet {
@@ -33,6 +38,43 @@ public class AddAccountDetails extends HttpServlet {
 	{
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
+		
+		if(request.getParameter("updateid")!=null)
+		{
+			String accId=request.getParameter("updateid");
+			RequireData rd=new RequireData();
+			List demoList=rd.getAccountRowData(accId);
+			Iterator itr=demoList.iterator();
+			while(itr.hasNext())
+					{
+						out.print(itr.next()+",");
+					}
+			
+		}
+		if(request.getParameter("Update")!=null)
+		{
+			String bId=request.getParameter("modalId");
+			String bName=request.getParameter("modalbName");
+			String branch=request.getParameter("modalBranch");
+			String accNo=request.getParameter("modalAccNo");
+			String opBalance=request.getParameter("modalBalance");
+			String alias=request.getParameter("modalAlias");
+			int status=0;
+			GenericDAO gd= new GenericDAO();
+			
+			String query="UPDATE `account_details` SET `bank_name`='"+bName+"',`branch`='"+branch+"',`acc_no`='"+accNo+"',"
+					+ "`opening_balance`='"+opBalance+"',`acc_aliasname`='"+alias+"' WHERE acc_id="+bId+"";
+			status=gd.executeCommand(query);
+			if(status==1)
+			{
+				System.out.println("successfully Updated in suppliers material");
+				request.setAttribute("status", "Updated Successfully");
+				RequestDispatcher rd=request.getRequestDispatcher("jsp/admin/settings/addAccountDetails.jsp");
+				rd.forward(request, response);
+			}
+			
+		}
+		
 		
 		
 		
