@@ -73,7 +73,7 @@
 	visibility:visible;
     height:17.5px;
     width: 26px;
-    background-color: #51a351;
+    background-color: #3a87ad;
     color: #fff;
     text-align: center;
     border-radius: 0px 150px 150px 0px;
@@ -159,7 +159,7 @@
 	                  while(exttypeitr.hasNext()){%>
                   <option value="<%=exttypeitr.next()%>"><%=exttypeitr.next() %></option>
                   <%}} %>
-                </select><div id="ttiptext responsive" class="ttiptext"><a href="#">
+                </select><div id="ttiptext responsive" class="ttiptext"><a onclick="getReveal()">
                 <span class="icon-plus" style=" color:white; right:2px;top: 3px;position: relative;">
 				</span></a></span></div>
               </div>
@@ -220,6 +220,22 @@
         </div>
       </div>
   </div>
+	<div class="span6" id="adding_Part" style="display:none" >
+		<div class="widget-box" style="border: 0px;">
+		<div class="widget-title" style="border: 0px;" ></div>
+			<div class="widget-content nopadding" style="border: 0px;">
+			 <div class="col-md-6"><div class="alert alert-info alert-dismissable"  style="height: 35px">
+			    <a onclick="document.getElementById('adding_Part').setAtrribute('style','display:none')" class="close" data-dismiss="alert" aria-label="close" style="margin-top: 10px" >×</a>
+				<div class="control-group" style="margin-top: 4px" >
+	              <label class="control-label span3" style="color: black;margin-top: 5px">Expense Type :</label>
+	              <input type="text" class="span7" placeholder="New Expense Type"/>
+	              <input type="button" style="height:20px;margin-bottom: 10px" class="btn btn-info span2" value="Add"/>
+            	</div>
+			  </div>
+			  </div>
+			</div>
+		</div>
+	</div>
 </div>
 
   <div class="row-fluid">
@@ -291,8 +307,18 @@ function myFunction() {
     var x = document.getElementById("snackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    
 }
-
+function getReveal()
+{	
+	var x=document.getElementById("adding_Part");
+	if(x.style.display==='none')
+		{
+		x.style.display='block';}
+	else
+		{
+		x.style.display='none';}
+	}
 function searchName(str,id) {
 	if (str == " ") {
 		document.getElementById(id).value="";
