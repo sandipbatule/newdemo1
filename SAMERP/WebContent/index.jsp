@@ -80,7 +80,7 @@ mukesh
 sandeep
 Sarang
 Vijay Ranka<br>
-himanshu patel is back
+himanshu patel
 </div>
 
 <!--end-main-container-part-->
