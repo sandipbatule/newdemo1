@@ -219,7 +219,7 @@
           </form>
         </div>
       </div>
-  </div><div class="pull-center">4546546</div>
+  </div>
 </div>
 
   <div class="row-fluid">
