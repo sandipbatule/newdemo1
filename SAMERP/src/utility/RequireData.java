@@ -18,8 +18,16 @@ public class RequireData
 	
 		public List getVehiclesData()
 		{
-			String vehicleDetailsQuery = "select * from vehicle_details order by vehicle_id desc;";
+			String vehicleDetailsQuery = "select vehicle_id, vehicle_type, vehicle_number, vehicle_rate from vehicle_details order by vehicle_id desc;";
 			List vehicleDetailsData = gd.getData(vehicleDetailsQuery);
+			return vehicleDetailsData;
+		}
+		
+		public List getVehicleRowData(String RowId)
+		{
+			String vehicleRowDataQuery = "select vehicle_type, vehicle_number, vehicle_rate from vehicle_details where vehicle_id="+RowId+"; ";
+			List vehicleDetailsData = gd.getData(vehicleRowDataQuery);
+			System.out.println(vehicleDetailsData);
 			return vehicleDetailsData;
 		}
 		

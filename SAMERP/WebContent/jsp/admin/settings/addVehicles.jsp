@@ -11,15 +11,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="/SAMERP/config/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/SAMERP/config/css/fullcalendar.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-style.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-media.css" />
 <link href="/SAMERP/config/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/SAMERP/config/css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+
+<style>
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 15px;
+    border-radius:50px 50px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+</style>
 </head>
-<body>
+<body onload="setFocusToTextBox()">
 
 <!--Header-part-->
 <div id="header">
@@ -28,6 +72,10 @@
 
 <!--start-top-serch-->
 <div id="search">
+
+<% if(request.getAttribute("status")!=null){ %>
+<div id="snackbar"><%=request.getAttribute("status")%></div>
+<%} %>
 
   <button type="submit" class="tip-bottom">LOGOUT</button>
 </div>
@@ -73,7 +121,7 @@
 <div id="content">
 <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+    <div id="breadcrumb"> <a href="/SAMERP/index.jsp" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Add Vehicles</a> </div>
   	<h1>Add New Vehicle</h1>
   </div>
 <!--End-breadcrumbs-->
@@ -95,7 +143,13 @@
             <div class="control-group">
               <label class="control-label"><span style="color: red;">*</span>Vehicle Type :</label>
               <div class="controls">
-                <input type="text" class="span3" placeholder="Vehicle Type" onkeyup="this.value=this.value.toUpperCase()" name="vehicle_type" id="vehicle_type" required  />
+<!--                 <input type="text" class="span3" placeholder="Vehicle Type" onkeyup="this.value=this.value.toUpperCase()" name="vehicle_type" id="vehicle_type" required  /> -->
+                <select class="span3" name="vehicle_type" id="vehicle_type" onchange="getRateText()" required >
+                	<option value=""> Select </option>
+                	<option value="JCB">JCB</option>
+                	<option value="POCLAIN">POCLAIN</option>
+                	<option value="TRUCK">TRUCK</option>
+                </select>
               </div>
             </div>
             
@@ -109,25 +163,18 @@
               </div>
             </div>
             
-            <div class="control-group">
-              <label class="control-label" style="margin-bottom: 15px;">Choose Facility : </label>
-              <div class="controls">
-                <label style="position: relative; float: left; " onclick="getRateText1()"><input type="radio" name="radios" id="service" /> <span> Service </span>  </label>
-                <label style="position: relative; float: right; right: 750px; " onclick="getRateText()"><input type="radio" name="radios" id="transport"  /> <span> Transport </span> </label>
-              </div>
-            </div>
              
              <div class="control-group">
-              <label class="control-label">Rate : </label>
+              <label class="control-label"><span id="required1" style="color: red;"></span>Rate : </label>
               <div class="controls">
                 <div class="input-append">
-                  <input type="text" placeholder="0000" class="span2" id="rateText" disabled="disabled">
+                  <input type="text" placeholder="0000" required class="span2" style="width: 230px;" id="rateText" name="rateText" disabled="disabled">
                   <span class="add-on"><i class="fa fa-inr" style="font-size: 1.5em;"></i></span> </div>
               </div>
             </div>
           
             <div class="form-actions" align="center">
-              <button type="submit" id="submitbtn"  class="btn btn-success">Submit</button> &nbsp;&nbsp;&nbsp;&nbsp;
+              <button type="submit" id="submitbtn" name="submit" class="btn btn-success">Submit</button> &nbsp;&nbsp;&nbsp;&nbsp;
               <a href="" id="cancelbtn"  class="btn btn-danger">Exit</a>
             </div>
           </form>
@@ -169,13 +216,14 @@
                 	String vehicleId = itr.next().toString();
                 	String vehicleType = itr.next().toString();
                 	String vehicleNumber = itr.next().toString();
+                	String vehicleRate = itr.next().toString();
               %>            
                     	<tr class="gradeX">
   							<td> <%=i %></td>
 	                      	<td id="<%=vehicleId%>"><%=vehicleType%></td>
 	                        <td><%=vehicleNumber%></td>
-	                        <td>  </td>
-	                        <td> <a href="" onclick="confirm()" >Delete</a> / <a href="" >Update</a></td>
+	                        <td> <%=vehicleRate%> </td>
+	                        <td> <a href="/SAMERP/AddVehicles?deleteid=<%=vehicleId%>" >Delete</a> / <a href="#update" data-toggle="modal"  onclick="searchName(<%=vehicleId%>)">Update</a></td>
                      	</tr>
              <%
                      	i++;
@@ -195,19 +243,156 @@
 
 <!--end-main-container-part-->
 
+
+<div class="modal hide fade" id="update" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h4 class="modal-title">Update Dealer Details</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" action="/SAMERP/AddVehicles" method="post" name="updateVehicle">
+					<div class="form-group">
+						<div class="widget-content nopadding">
+          
+				            <div class="control-group">
+				              <label class="control-label"><span style="color: red;">*</span>Vehicle Type :</label>
+				              <div class="controls">
+				<!--                 <input type="text" class="span3" placeholder="Vehicle Type" onkeyup="this.value=this.value.toUpperCase()" name="vehicle_type" id="vehicle_type" required  /> -->
+				                <select class="span3" name="Updatevehicle_type" id="Updatevehicle_type" onchange="getRateText1()" required >
+				                	<option value=""> Select </option>
+				                	<option value="JCB">JCB</option>
+				                	<option value="POCLAIN">POCLAIN</option>
+				                	<option value="TRUCK">TRUCK</option>		
+				                </select>
+				              </div>
+				            </div>
+				            
+				            <div class="control-group">
+				              <label class="control-label"><span style="color: red;">*</span>Vehicle Number :</label>
+				              <div class="controls">
+				                <input type="text" class="span1" placeholder="XX" style="width: 35px;" onkeyup="this.value=this.value.toUpperCase()" name="Updatevehicleno1" id="Updatevehicleno1"  pattern="[A-Za-z]+" maxlength="2" required />  &ndash; 
+				                <input type="text" class="span1" placeholder="XX" style="width: 35px;" name="Updatevehicleno2" id="Updatevehicleno2"  pattern="[0-9]+" maxlength="2" required />  &ndash; 
+				                <input type="text" class="span1" placeholder="XX" style="width: 35px;" onkeyup="this.value=this.value.toUpperCase()" name="Updatevehicleno3" id="Updatevehicleno3"  pattern="[A-Za-z]+" maxlength="2" required />  &ndash;
+				                <input type="text" class="span2" placeholder="XXXX" style="width: 70px;" name="Updatevehicleno4" id="Updatevehicleno4" pattern="[0-9]+" maxlength="4" required />
+				              </div>
+				            </div>
+				            
+				             
+				             <div class="control-group">
+				              <label class="control-label"><span id="required2" style="color: red;"></span>Rate : </label>
+				              <div class="controls">
+				                <div class="input-append">
+				                  <input type="text" placeholder="0000" required class="span2" style="width: 230px;" id="UpdateRateText" name="rateText" disabled="disabled">
+				                  <span class="add-on"><i class="fa fa-inr" style="font-size: 1.5em;"></i></span> </div>
+				              </div>
+				            </div>
+			            
+				            <div class="modal-footer">
+									<input type="submit" id="submitbtn" class="btn btn-primary" value="Update" />
+									<input type="button" id="cancelbtn" class="btn btn-danger" data-dismiss="modal" value="Cancel"/>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+				
+			</div>
+		</div>
+	</div>
+
+            
+
+
 <script type="text/javascript">
 
+
+
+function searchName(id) {
+	
+	var xhttp;
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			
+			var demoStr = this.responseText.split(",");
+			
+			document.getElementById("Updatevehicle_type").value = demoStr[0];
+			
+			var vehicleNumber = demoStr[1].split("-");
+			
+			document.getElementById("Updatevehicleno1").value = vehicleNumber[0];
+			document.getElementById("Updatevehicleno2").value = vehicleNumber[1];
+			document.getElementById("Updatevehicleno3").value = vehicleNumber[2];
+			document.getElementById("Updatevehicleno4").value = vehicleNumber[3];
+			
+			
+			document.getElementById("UpdateRateText").value = demoStr[2];
+				
+			}
+		};
+	xhttp.open("POST","/SAMERP/AddVehicles?updateid="+id, true);
+	xhttp.send();
+	
+	
+}
+
+function getSr(id){
+    $('form2')
+	var someVarName = id;
+	localStorage.setItem("someVarName", someVarName);
+	var f=document.getElementById("dealerTable");
+    f.action='/SAMERP/jsp/admin/settings/addVehicles.jsp?vehicleRowId='+id;
+    f.method="post";
+    f.submit();  
+}
+
+function showModal(){
+	var someVarName = localStorage.getItem("someVarName");
+	 
+	if(someVarName>0)
+	{
+		getRateText1();
+		$('#update').modal('show');
+		
+	}
+	localStorage.setItem('someVarName', null);
+}
+
+function setFocusToTextBox() {
+	document.getElementById("vehicle_type").focus();
+	showModal();
+	myFunction();
+}
+
+function myFunction() {
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 function getRateText(){
-	if(document.getElementById("transport").value=="on"){
-		document.getElementById("rateText").disabled=false;
+	if(document.getElementById("vehicle_type").value=="TRUCK"){
+		document.getElementById("rateText").disabled=true;
+		document.getElementById("required1").innerHTML="";
 	} 
+	else{
+		document.getElementById("rateText").disabled=false;
+		document.getElementById("required1").innerHTML="*";
+	}
 }
 
 function getRateText1(){
-	if(document.getElementById("service").value=="on"){
-		document.getElementById("rateText").disabled=true;
+	if(document.getElementById("Updatevehicle_type").value=="TRUCK"){
+		document.getElementById("UpdateRateText").disabled=true;
+		document.getElementById("required2").innerHTML="";
 	} 
+	else{
+		document.getElementById("UpdateRateText").disabled=false;
+		document.getElementById("required2").innerHTML="*";
+	}
 }
+
 </script>
 
 <!--Footer-part-->
