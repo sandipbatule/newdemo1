@@ -2,7 +2,10 @@ package admin.settings;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,39 +13,87 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.General.GenericDAO;
+import utility.RequireData;
 
 
 public class AddVehicles extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+			doPost(request,response);
 		
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
 		
-		GenericDAO gd = new GenericDAO();
 		PrintWriter out = response.getWriter();
+		GenericDAO gd = new GenericDAO();
 		
-		String vehicleType= request.getParameter("vehicle_type");
-		String vehicleNo1= request.getParameter("vehicleno1");
-		String vehicleNo2= request.getParameter("vehicleno2");
-		String vehicleNo3= request.getParameter("vehicleno3");
-		String vehicleNo4= request.getParameter("vehicleno4");
-		
-		String vehicleNo = vehicleNo1+"-"+vehicleNo2+"-"+vehicleNo3+"-"+vehicleNo4;
-		
-		String insertVehicleQuery = "insert into vehicle_details(vehicle_type, vehicle_number) values ('"+vehicleType+"', '"+vehicleNo+"');";
-		int insertStatus = gd.executeCommand(insertVehicleQuery);
-		
-		if(insertStatus==1){
-			System.out.println("insert successful");
-			out.println("insert successful");
-		}else{
-			System.out.println("insert fail");
-			out.println("insert fail");
+		if(request.getParameter("vehicle_type")!=null)
+		{
+			String vehicleType = request.getParameter("vehicle_type");	
+			System.out.println(vehicleType);
+			String vehicleNo1 = request.getParameter("vehicleno1");
+			String vehicleNo2 = request.getParameter("vehicleno2");
+			String vehicleNo3 = request.getParameter("vehicleno3");
+			String vehicleNo4 = request.getParameter("vehicleno4");
+			String vehicleRate = request.getParameter("rateText");
 			
+			String vehicleNo = vehicleNo1+"-"+vehicleNo2+"-"+vehicleNo3+"-"+vehicleNo4;
+			String vehicleAlias = vehicleType +"_"+vehicleNo3+"-"+vehicleNo4;
+			System.out.println(vehicleAlias);
+			
+			String insertVehicleQuery = "insert into vehicle_details(vehicle_type, vehicle_number, vehicle_rate, vehicle_aliasname) values ('"+vehicleType+"', '"+vehicleNo+"', '"+vehicleRate+"', '"+vehicleAlias+"');";
+			int insertStatus = gd.executeCommand(insertVehicleQuery);
+			
+			if(insertStatus==1){
+				System.out.println("insert successful");
+				request.setAttribute("status", "Vehicle Inserted Successfully");
+			}else{
+				System.out.println("insert fail");
+				request.setAttribute("status", "Vehicle Insert Fail");
+			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher("jsp/admin/settings/addVehicles.jsp");
+			rd.forward(request, response);
+		}
+		
+		if(request.getParameter("deleteid")!=null)
+		{
+			String deleteId = request.getParameter("deleteid");	
+			String deleteVehicleQuery= "delete from vehicle_details where vehicle_id="+deleteId;
+			int deletestatus = gd.executeCommand(deleteVehicleQuery);
+			
+			if(deletestatus==1){
+				System.out.println("delete vehicle successful");
+				request.setAttribute("status", "Vehicle Deleted Successfully");
+			}else{
+				System.out.println("delete vehicle fail");
+				request.setAttribute("status", "Vehicle Delete Fail");
+			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher("jsp/admin/settings/addVehicles.jsp");
+			rd.forward(request, response);
+		}
+		
+		
+		if(request.getParameter("updateid")!=null)
+		{
+			String RowId=request.getParameter("updateid");
+			RequireData rd=new RequireData();
+			List demoList=rd.getVehicleRowData(RowId);
+			Iterator itr=demoList.iterator();
+			while(itr.hasNext())
+			{
+				out.print(itr.next()+",");
+			}
+	
+		}
+		
+		if(request.getParameter("submitbtn")!=null)
+		{
+			out.println("hello");
 		}
 		
 	}
