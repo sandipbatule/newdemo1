@@ -67,7 +67,15 @@ public class RequireData
 	}
 	public List getExpensesDetails()
 	{
-		String demo="SELECT * FROM expenses_master";
+		String demo="SELECT `exp_id`,`expenses_type`.`expenses_type_name`, `name`, `amount`, "
+				+ "`payment_mode`, `date`, `reason`, `other_details` FROM `expenses_master`,"
+				+ "`expenses_type` WHERE expenses_type.expenses_type_id=expenses_master.expenses_type_id";
+		List demoList=gd.getData(demo);
+		return demoList;
+	}
+	public List getExpensesType()
+	{
+		String demo="select expenses_type_id, expenses_type_name from expenses_type where status=0";
 		List demoList=gd.getData(demo);
 		return demoList;
 	}

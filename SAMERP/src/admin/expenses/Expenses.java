@@ -66,13 +66,13 @@ public class Expenses extends HttpServlet {
 			GenericDAO gd=new GenericDAO();
 			int getstatus=0;
 			String name=request.getParameter("name");
-			int amount=Integer.parseInt(request.getParameter("amount").toString());
+			double amount=Double.parseDouble(request.getParameter("amount").toString());
 			String type=request.getParameter("type");
 			String date=request.getParameter("date");
 			String[] arrayOfString = date.split("-");
 			String details=request.getParameter("reason");
 			String other_details=request.getParameter("other_details");
-			String query="INSERT INTO `expenses_master`(`name`, `amount`, `type`, `date`, `reason`, `other_details`) "
+			String query="INSERT INTO `expenses_master`(`name`, `amount`, `payment_mode`, `date`, `reason`, `other_details`) "
 					+ "VALUES ('"+name+"',"+amount+",'"+type+"','"+arrayOfString[2]+"-"+arrayOfString[1]+"-"+arrayOfString[0]+"','"+details+"','"+other_details+"')";
 			getstatus=gd.executeCommand(query);
 			if(getstatus!=0)
