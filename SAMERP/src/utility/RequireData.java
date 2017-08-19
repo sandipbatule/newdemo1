@@ -32,7 +32,14 @@ public class RequireData
 		String demo="select * from account_details";
 		List demoList=gd.getData(demo);
 		return demoList;
-	}	
+	}
+	
+	public List getAccountRowData(String id)
+	{
+		String demo="select * from account_details where acc_id="+id+"";
+		List demoList=gd.getData(demo);
+		return demoList;
+	}
 	
 	//--omkar end
 	

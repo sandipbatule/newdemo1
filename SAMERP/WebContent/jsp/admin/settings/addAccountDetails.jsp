@@ -182,6 +182,7 @@ transition: all 0.3s;
                 <input class="btn btn-danger" type="button" value="Cancel" />
                 <div id="status"></div>
               </div>
+              
             </form>
           </div>
         </div>
@@ -209,10 +210,12 @@ transition: all 0.3s;
               <tbody>
               <%RequireData rd=new RequireData();
               	List getAccData=rd.getAccountDetails();
-            	if(getAccData!=null){
+              	Object accId=0;
+              	if(getAccData!=null){
             	Iterator itr=getAccData.iterator();
             	int i=1;
-            	while(itr.hasNext()){ Object accId=itr.next();
+            	
+            	while(itr.hasNext()){ accId=itr.next();
               %>
                 <tr>
                   <td style="text-align: center"><%=i %><% i++; %></td>
@@ -221,7 +224,7 @@ transition: all 0.3s;
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><%=itr.next() %></td>
-                  <td style="text-align: center"><a href="#updateAccDetails" data-toggle="modal">Update</a>|<a href="/SAMERP/AddAccountDetails?deleteId=<%=accId%>">Delete</a></td>
+                  <td style="text-align: center"><a href="#updateAccDetails" onclick="searchName(<%=accId %>)" data-toggle="modal">Update</a>|<a href="/SAMERP/AddAccountDetails?deleteId=<%=accId%>">Delete</a></td>
                 </tr>
                 <%}} %>
               </tbody>
@@ -236,20 +239,62 @@ transition: all 0.3s;
 
 <!--end-main-container-part-->
 
-<div class="modal fade" id="updateAccDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal hide fade" id="updateAccDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
+      <div class="modal-body" id="showModal">
+      <form class="form-horizontal" action="/SAMERP/AddAccountDetails" method="post" name="updateAccount">
+        <div class="form-group">
+		<div class="widget-content nopadding">
+        	<div class="control-group">
+                  <label class="control-label">Bank Name</label>
+                  <div class="controls">
+                  <input type="hidden" id="modalId"  name="modalId"/>
+                    <input type="text" id="modalName" name="modalbName"/>
+         			</div>
+        	</div>
+        	
+        	<div class="control-group">
+                  <label class="control-label">Branch</label>
+                  <div class="controls">
+                    <input type="text" id="modalBranch"  name="modalBranch" />
+         			</div>
+        	</div>
+        	
+        	<div class="control-group">
+                  <label class="control-label">Account No</label>
+                  <div class="controls">
+                    <input type="text" id="modalAccNo"  name="modalAccNo" />
+         			</div>
+        	</div>
+        	
+        	<div class="control-group">
+                  <label class="control-label">Opening Balance</label>
+                  <div class="controls">
+                    <input type="text" id="modalBalance"  name="modalBalance" />
+         			</div>
+        	</div>
+        	
+        	<div class="control-group">
+                  <label class="control-label">Alias Name</label>
+                  <div class="controls">
+                    <input type="text" id="modalAlias"  name="modalAlias" />
+         			</div>
+        	</div>
+      
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit"name="Update" class="btn btn-primary">Save changes</button></div>
       </div>
+      </div>
+      </form>
+        
+      </div>
+      
     </div>
   </div>
 </div>
@@ -262,18 +307,8 @@ transition: all 0.3s;
 
 <!--end-Footer-part-->
 
-<script>
-function myFunction() {
-	document.getElementById("bankName").focus();
-    var x = document.getElementById("snackbar")
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-
-</script>
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.min.js"></script> 
-
 <script src="/SAMERP/config/js/jquery.ui.custom.js"></script> 
 <script src="/SAMERP/config/js/bootstrap.min.js"></script>
 <script src="/SAMERP/config/js/jquery.flot.min.js"></script> 
@@ -293,5 +328,34 @@ function myFunction() {
 <script src="/SAMERP/config/js/matrix.popover.js"></script> 
 <script src="/SAMERP/config/js/jquery.dataTables.min.js"></script> 
 <script src="/SAMERP/config/js/matrix.tables.js"></script> 
+<script>
+function myFunction() {
+	document.getElementById("bankName").focus();
+    var x = document.getElementById("snackbar")
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+function searchName(id) {
+	var xhttp;
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var demoStr = this.responseText.split(",");
+			document.getElementById("modalId").value = demoStr[0];
+			document.getElementById("modalName").value = demoStr[1];
+			document.getElementById("modalBranch").value = demoStr[2];
+			document.getElementById("modalAccNo").value = demoStr[3];
+			document.getElementById("modalBalance").value = demoStr[4];
+			document.getElementById("modalAlias").value = demoStr[5];
+				
+			}
+		};
+	xhttp.open("POST","/SAMERP/AddAccountDetails?updateid="+id, true);
+	xhttp.send();
+}
+
+</script>
+
+
 </body>
 </html>
