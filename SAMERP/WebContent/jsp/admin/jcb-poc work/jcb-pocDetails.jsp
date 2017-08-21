@@ -102,62 +102,56 @@
 		</div>
 		<div class="container-fluid">
 			<hr>
-			<div class="alert alert-info span9">
-				<strong>Enter Party/Customer Name:</strong><input type="text" style="    margin-top: 10px;"
-					class="span3" placeholder="">
-				<button type="button" class="btn btn-primary btn-mini" style="width: 40px; border: 2px black solid; font-size: 20px;"><i class="icon-plus"></i></button>
-				
-			</div>
-
-
 			<div class="row-fluid">
-				<div class="span8">
+				<div class="span12">
 					<div class="widget-box">
-						<div class="widget-title">
-							<span class="icon"> <i class="icon-briefcase"></i>
-							</span>
-							<h5>Customer Detail</h5>
+						<!-- 						<div class="widget-title"> -->
+						<!-- 							<span class="icon"> <i class="icon-briefcase"></i> -->
+						<!-- 							</span> -->
+						<!-- 							<h5>Customer Detail</h5> -->
+						<!-- 						</div> -->
+						<div class="alert alert-info" style="padding-left: 200px;">
+							<strong>Enter Party/Customer Name : </strong><input type="text"
+								style="margin-top: 10px;" class="span3" placeholder="">
+							<button type="button" class="btn btn-primary btn-mini"
+								style="width: 40px; border: 2px black solid; font-size: 20px;">+</button>
+
 						</div>
 						<div class="widget-content nopadding">
-							<table class="table table-bordered table-invoice-full"
-								style="border-color: white;">
+							<table class=""
+								style="border-color: white; margin: 0 auto; width: 700px">
 								<tr>
-									<td style="text-align: right;">Customer Name : <input type="text" name="required" id="required"></td>
-									<td style="text-align: center;">Address : <input type="text" name="email" id="email"></td>
+									<td colspan="2"><h4>Customer Detail</h4></td>
 								</tr>
 								<tr>
-									<td style="text-align: right;">Contact NO : <input type="text" name="contact"
-										id="contact"></td>
+									<td style="text-align: right;">Customer Name : <input
+										type="text" name="required" id="required"></td>
+									<td style="text-align: right;">Address : <input
+										type="text" name="email" id="email"></td>
+								</tr>
+								<tr>
+									<td style="text-align: right;">Contact NO : <input
+										type="text" name="contact" id="contact"></td>
 									<td></td>
 								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="row-fluid">
-				<div class="span8">
-					<div class="widget-box">
-						<div class="widget-title">
-							<span class="icon"> <i class="icon-briefcase"></i>
-							</span>
-							<h5>Work Detail</h5>
-						</div>
-						<div class="widget-content nopadding">
-							<table class="table table-bordered table-invoice-full"
-								style="border-color: white;">
 								<tr>
-									<td style="text-align: right;">Chalan NO : <input type="text" name="required"
-										id="required"></td>
-									<td style="text-align: center;">Date : <input type="text" name="email" id="email"></td>
+									<td style="height: 2px;"></td>
+									<td></td>
 								</tr>
 								<tr>
-									<td style="text-align: right;">Machine Name : <input type="text" name="contact"
-										id="contact"></td>
-									<td style="text-align: center;">Work Hrs : <input type="text" name="contact" placeholder="HH:MM"
-										id="contact"></td>
+									<td colspan="2"><h4>Work Detail</h4></td>
+								</tr>
+								<tr>
+									<td style="text-align: right;">Chalan NO : <input
+										type="text" name="required" id="required"></td>
+									<td style="text-align: right;">Date : <input type="text"
+										name="email" id="email"></td>
+								</tr>
+								<tr>
+									<td style="text-align: right;">Machine Name : <input
+										type="text" name="contact" id="contact"></td>
+									<td style="text-align: right;">Work Hrs : <input
+										type="text" name="contact" placeholder="HH:MM" id="contact"></td>
 								</tr>
 								<tr>
 									<td colspan="2" style="text-align: center;"><button
@@ -171,72 +165,72 @@
 				</div>
 			</div>
 
+
 			<div class="row-fluid">
 				<div class="span12">
 
 					<div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Data table</h5>
-          </div>
-          <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="gradeX">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">4</td>
-                </tr>
-                <tr class="gradeC">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">5</td>
-                </tr>
-                <tr class="gradeA">
-                  <td>Presto</td>
-                  <td>Opera 7.5</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td class="center">-</td>
-                </tr>
-                <tr class="gradeA">
-                  <td>Presto</td>
-                  <td>Opera 8.0</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td class="center">-</td>
-                </tr>
-                <tr class="gradeA">
-                  <td>Presto</td>
-                  <td>Opera 8.5</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td class="center">-</td>
-                </tr>
-                <tr class="gradeA">
-                  <td>Presto</td>
-                  <td>Opera 9.0</td>
-                  <td>Win 95+ / OSX.3+</td>
-                  <td class="center">-</td>
-                </tr>
-                <tr class="gradeA">
-                  <td>Presto</td>
-                  <td>Opera 9.2</td>
-                  <td>Win 88+ / OSX.3+</td>
-                  <td class="center">-</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+						<div class="widget-title">
+							<span class="icon"><i class="icon-th"></i></span>
+							<h5>Data table</h5>
+						</div>
+						<div class="widget-content nopadding">
+							<table class="table table-bordered data-table">
+								<thead>
+									<tr>
+										<th>Rendering engine</th>
+										<th>Browser</th>
+										<th>Platform(s)</th>
+										<th>Engine version</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="gradeX">
+										<td>Trident</td>
+										<td>Internet Explorer 4.0</td>
+										<td>Win 95+</td>
+										<td class="center">4</td>
+									</tr>
+									<tr class="gradeC">
+										<td>Trident</td>
+										<td>Internet Explorer 5.0</td>
+										<td>Win 95+</td>
+										<td class="center">5</td>
+									</tr>
+									<tr class="gradeA">
+										<td>Presto</td>
+										<td>Opera 7.5</td>
+										<td>Win 95+ / OSX.2+</td>
+										<td class="center">-</td>
+									</tr>
+									<tr class="gradeA">
+										<td>Presto</td>
+										<td>Opera 8.0</td>
+										<td>Win 95+ / OSX.2+</td>
+										<td class="center">-</td>
+									</tr>
+									<tr class="gradeA">
+										<td>Presto</td>
+										<td>Opera 8.5</td>
+										<td>Win 95+ / OSX.2+</td>
+										<td class="center">-</td>
+									</tr>
+									<tr class="gradeA">
+										<td>Presto</td>
+										<td>Opera 9.0</td>
+										<td>Win 95+ / OSX.3+</td>
+										<td class="center">-</td>
+									</tr>
+									<tr class="gradeA">
+										<td>Presto</td>
+										<td>Opera 9.2</td>
+										<td>Win 88+ / OSX.3+</td>
+										<td class="center">-</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 
 				</div>
 			</div>
