@@ -39,7 +39,7 @@
     position: fixed;
     z-index: 1;
     left: 50%;
-    top: 250px;
+    top: 80px;
     font-size: 17px;
 }
 
@@ -51,22 +51,34 @@
 
 @-webkit-keyframes fadein {
     from {top: 0; opacity: 0;} 
-    to {top: 250px; opacity: 1;}
+    to {top: 80px; opacity: 1;}
 }
 
 @keyframes fadein {
     from {top: 0; opacity: 0;}
-    to {top: 250px; opacity: 1;}
+    to {top: 80px; opacity: 1;}
 }
 
 @-webkit-keyframes fadeout {
-    from {top: 250px; opacity: 1;} 
+    from {top: 80px; opacity: 1;} 
     to {top: 0; opacity: 0;}
 }
 
 @keyframes fadeout {
-    from {top: 250px; opacity: 1;}
+    from {top: 80px; opacity: 1;}
     to {top: 0; opacity: 0;}
+}
+.ttiptext {
+	position:absolute;
+	visibility:visible;
+    height:17.5px;
+    width: 26px;
+    background-color: #3a87ad;
+    color: #fff;
+    text-align: center;
+    border-radius: 0px 150px 150px 0px;
+    padding: 5px 0;
+    left: 473px;position: absolute;
 }
 
 </style>
@@ -135,6 +147,23 @@
         </div>
         <div class="widget-content nopadding">
           <form action="/SAMERP/Expenses.do" method="post" class="form-horizontal">
+           <div class="control-group">
+              <label class="control-label">Expense Type :</label>
+              <div class="controls">
+                <select class="span11" name="expensetype" onclick="document.getElementById('ttipnext').style.visibility='visible';">
+                  <option selected >Select</option>
+                  <% RequireData rd=new RequireData();
+                  List expenselist=rd.getExpensesType();
+                  if(expenselist!=null){
+	                  Iterator exttypeitr=expenselist.iterator();
+	                  while(exttypeitr.hasNext()){%>
+                  <option value="<%=exttypeitr.next()%>"><%=exttypeitr.next() %></option>
+                  <%}} %>
+                </select><div id="ttiptext responsive" class="ttiptext"><a onclick="getReveal()">
+                <span class="icon-plus" style=" color:white; right:2px;top: 3px;position: relative;">
+				</span></a></span></div>
+              </div>
+            </div>
             <div class="control-group">
               <label class="control-label">Giving To :</label>
               <div class="controls">
@@ -154,8 +183,7 @@
                 <select required class="span11" name="type">
                   <option selected >Select</option>
                   <option value="CASH">CASH</option>
-                  <% RequireData rd=new RequireData();
-                  List aliasnamelist=rd.getBankAliasName();
+                  <%List aliasnamelist=rd.getBankAliasName();
                   if(aliasnamelist!=null){
 	                  Iterator aliasitr=aliasnamelist.iterator();
 	                  while(aliasitr.hasNext()){
@@ -192,7 +220,24 @@
         </div>
       </div>
   </div>
+	<div class="span6" id="adding_Part" style="display:none" >
+		<div class="widget-box" style="border: 0px;">
+		<div class="widget-title" style="border: 0px;" ></div>
+			<div class="widget-content nopadding" style="border: 0px;">
+			 <div class="col-md-6"><div class="alert alert-info alert-dismissable"  style="height: 35px">
+			    <a onclick="document.getElementById('adding_Part').setAtrribute('style','display:none')" class="close" data-dismiss="alert" aria-label="close" style="margin-top: 10px" >×</a>
+				<div class="control-group" style="margin-top: 4px" >
+	              <label class="control-label span3" style="color: black;margin-top: 5px">Expense Type :</label>
+	              <input type="text" class="span7" placeholder="New Expense Type"/>
+	              <input type="button" style="height:20px;margin-bottom: 10px" class="btn btn-info span2" value="Add"/>
+            	</div>
+			  </div>
+			  </div>
+			</div>
+		</div>
+	</div>
 </div>
+
   <div class="row-fluid">
   	<div class="span12">
   		<div class="widget-box">
@@ -204,9 +249,10 @@
               <thead>
                 <tr>
                   <th>S.No.</th>
+                  <th>Expense Type</th>
                   <th>Customer Name</th>
                   <th>Amount</th>
-                  <th>Type</th>
+                  <th>Payment Mode</th>
                   <th>Date</th>
                   <th>Reason</th>
                   <th>Other Details</th>
@@ -214,8 +260,7 @@
                 </tr>
               </thead>
               <tbody>
-              <%RequireData rd1=new RequireData();
-              	List getExpData=rd1.getExpensesDetails();
+              <%List getExpData=rd.getExpensesDetails();
             	if(getExpData!=null){
             	Iterator getexpitr=getExpData.iterator();
             	int i=1;
@@ -223,7 +268,8 @@
               %>
                 <tr>
                   <td style="text-align: center"><%=i %><% i++; %></td>
-                  <td style="text-align: center" value="<%=dataId%>"><%=getexpitr.next() %></td>
+                  <td style="text-align: center"><%=getexpitr.next() %></td>
+                  <td style="text-align: center"<%=dataId%>"><%=getexpitr.next() %></td>
                   <td style="text-align: center"><%=getexpitr.next() %></td>
                   <td style="text-align: center"><%=getexpitr.next() %></td>
                   <td style="text-align: center"><%=getexpitr.next() %></td>
@@ -261,8 +307,18 @@ function myFunction() {
     var x = document.getElementById("snackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    
 }
-
+function getReveal()
+{	
+	var x=document.getElementById("adding_Part");
+	if(x.style.display==='none')
+		{
+		x.style.display='block';}
+	else
+		{
+		x.style.display='none';}
+	}
 function searchName(str,id) {
 	if (str == " ") {
 		document.getElementById(id).value="";
