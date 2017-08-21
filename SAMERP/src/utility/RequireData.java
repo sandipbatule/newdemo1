@@ -11,7 +11,11 @@ public class RequireData
 	//starts your methods here
 	
 	// himanshu start
-	
+	public List getCustomerList() {
+		String Customer_query="SELECT * FROM `customer_master`";
+		List CustomerList=gd.getData(Customer_query);
+		return CustomerList;
+	}
 		//--himanshu end
 	
 	// mukesh start
@@ -25,10 +29,18 @@ public class RequireData
 		
 		public List getVehicleRowData(String RowId)
 		{
-			String vehicleRowDataQuery = "select vehicle_type, vehicle_number, vehicle_rate from vehicle_details where vehicle_id="+RowId+"; ";
+			String vehicleRowDataQuery = "select vehicle_id, vehicle_type, vehicle_number, vehicle_rate from vehicle_details where vehicle_id="+RowId+"; ";
 			List vehicleDetailsData = gd.getData(vehicleRowDataQuery);
 			System.out.println(vehicleDetailsData);
 			return vehicleDetailsData;
+		}
+		
+		
+		public List getVehicleRowCount()
+		{
+			String vehicleRowCountQuery = "select count(*) from vehicle_details;";
+			List vehicleCount = gd.getData(vehicleRowCountQuery);
+			return vehicleCount;
 		}
 		
 	//--mukesh end
