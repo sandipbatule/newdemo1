@@ -226,7 +226,7 @@ transition: all 0.3s;
                   <td style="text-align: center"><%=itr.next() %></td>
                   <td style="text-align: center"><a href="#updateAccDetails" onclick="searchName(<%=accId %>)" data-toggle="modal">Update</a>|<a href="/SAMERP/AddAccountDetails?deleteId=<%=accId%>">Delete</a></td>
                 </tr>
-                <%}} %>
+                <%itr.next();}} %>
               </tbody>
             </table>
           </div>

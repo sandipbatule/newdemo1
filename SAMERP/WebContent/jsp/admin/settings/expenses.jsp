@@ -70,7 +70,6 @@
 }
 .ttiptext {
 	position:absolute;
-	visibility:visible;
     height:17.5px;
     width: 26px;
     background-color: #3a87ad;
@@ -78,7 +77,8 @@
     text-align: center;
     border-radius: 0px 150px 150px 0px;
     padding: 5px 0;
-    left: 473px;position: absolute;
+    left: 473px;
+    top:49px;
 }
 
 </style>
@@ -140,47 +140,52 @@
 <div class="container-fluid">
   <hr>
   <div class="row-fluid">
-    <div class="span6 pull-left">
-	   <div class="widget-box">
+    <div class="span10 offset1">
+	   <div class="widget-box pull-center">
         <div class="widget-title"> <span class="icon"> <i class="icon-group"></i> </span>
           <h5>GIVEN TO:-</h5>
         </div>
         <div class="widget-content nopadding">
           <form action="/SAMERP/Expenses.do" method="post" class="form-horizontal">
-           <div class="control-group">
-              <label class="control-label">Expense Type :</label>
+           <div class="col-md-5 offset1">
+            <div class="control-group col-md-6">
+              <label class="control-label">Expense -Type :</label>
               <div class="controls">
-                <select class="span11" name="expensetype" onclick="document.getElementById('ttipnext').style.visibility='visible';">
-                  <option selected >Select</option>
-                  <% RequireData rd=new RequireData();
-                  List expenselist=rd.getExpensesType();
-                  if(expenselist!=null){
-	                  Iterator exttypeitr=expenselist.iterator();
-	                  while(exttypeitr.hasNext()){%>
-                  <option value="<%=exttypeitr.next()%>"><%=exttypeitr.next() %></option>
-                  <%}} %>
-                </select><div id="ttiptext responsive" class="ttiptext"><a onclick="getReveal()">
-                <span class="icon-plus" style=" color:white; right:2px;top: 3px;position: relative;">
-				</span></a></span></div>
+                <select class="span6" name="expensetype" onclick="document.getElementById('ttipnext').style.visibility='visible';" id="expenseType">
+	                  <option selected >Select</option>
+	                  <% RequireData rd=new RequireData();
+	                  List expenselist=rd.getExpensesType();
+	                  if(expenselist!=null){
+		                  Iterator exttypeitr=expenselist.iterator();
+		                  while(exttypeitr.hasNext()){%>
+	                  <option value="<%=exttypeitr.next()%>"><%=exttypeitr.next() %></option>
+	                  <%}} %>
+	                </select>
               </div>
             </div>
+            </div>
+           <div class="col-md-8 offset1">
             <div class="control-group">
               <label class="control-label">Giving To :</label>
               <div class="controls">
-                <input list="getList" id="name" onkeyup="searchName(this.value,this.id)" onblur="document.getElementById('getList').innerHTML='';" autocomplete="off" type="text" class="span11" name="name" placeholder="Name" required/>
+                <input list="getList" id="name" onkeyup="searchName(this.value,this.id)" onblur="document.getElementById('getList').innerHTML='';" autocomplete="off" type="text" class="span6" name="name" placeholder="Name" required/>
               	<datalist id="getList"></datalist>
               </div>
             </div>
+            </div>
+             <div class="col-md-8 offset1">
             <div class="control-group">
               <label class="control-label">Amount :</label>
               <div class="controls">
-                <input type="text" name="amount" class="span11" placeholder="Amount" required/>
+                <input type="text" name="amount" class="span6" placeholder="Amount" required/>
                 </div>
             </div>
-            <div class="control-group">
+            </div>
+             <div class="col-md-8 offset1">
+            <div class="control-group col-md-6">
               <label class="control-label">Type :</label>
               <div class="controls">
-                <select required class="span11" name="type">
+                <select required class="span6" name="type">
                   <option selected >Select</option>
                   <option value="CASH">CASH</option>
                   <%List aliasnamelist=rd.getBankAliasName();
@@ -193,51 +198,43 @@
                 </select>
               </div>
             </div>
+            </div>
+            <div class="col-md-8 offset1">
             <div class="control-group">
               <label class="control-label">Date :</label>
               <div class="controls">
               <% SysDate sd=new SysDate(); %>
-                <input name="date" type="text" data-date="<%=sd.todayDate() %>" data-date-format="dd-mm-yyyy" value="<%=sd.todayDate() %>" class="datepicker span11">
+                <input name="date" type="text" data-date="<%=sd.todayDate() %>" data-date-format="dd-mm-yyyy" value="<%=sd.todayDate() %>" class="datepicker span6">
                 </div>
             </div>
+            </div>
+             <div class="col-md-8 offset1">
             <div class="control-group">
-              <label class="control-label">Reason :</label>
+              <label class="control-label"> Reason :</label>
               <div class="controls">
-                <input type="text" id="reason" list="getList" name="reason" onkeyup="searchName(this.value,this.id)" class="span11" placeholder="Reason" autocomplete="off" required/>
+                <input type="text" id="reason" list="getList" name="reason" onkeyup="searchName(this.value,this.id)" class="span6" placeholder="Reason" autocomplete="off" required/>
               	<datalist id=getList"></datalist>
               </div>
             </div>
+            </div>
+             <div class="col-md-8 offset1">
             <div class="control-group">
               <label class="control-label">Other Details :</label>
               <div class="controls">
-                <textarea class="span11" name="other_details" ></textarea>
+                <textarea class="span6" name="other_details" ></textarea>
               </div>
             </div>
+            </div>
             <div class="form-actions">
-              <button type="submit" name="save" class="btn btn-success pull-right">Save</button>
+              <center><button type="submit" name="save" class="btn btn-success pull-center">Save</button>
+              <a href="/SAMERP/index.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+              </center>
             </div>
           </form>
         </div>
       </div>
   </div>
-	<div class="span6" id="adding_Part" style="display:none" >
-		<div class="widget-box" style="border: 0px;">
-		<div class="widget-title" style="border: 0px;" ></div>
-			<div class="widget-content nopadding" style="border: 0px;">
-			 <div class="col-md-6"><div class="alert alert-info alert-dismissable"  style="height: 35px">
-			    <a onclick="document.getElementById('adding_Part').setAtrribute('style','display:none')" class="close" data-dismiss="alert" aria-label="close" style="margin-top: 10px" >×</a>
-				<div class="control-group" style="margin-top: 4px" >
-	              <label class="control-label span3" style="color: black;margin-top: 5px">Expense Type :</label>
-	              <input type="text" class="span7" placeholder="New Expense Type"/>
-	              <input type="button" style="height:20px;margin-bottom: 10px" class="btn btn-info span2" value="Add"/>
-            	</div>
-			  </div>
-			  </div>
-			</div>
-		</div>
-	</div>
 </div>
-
   <div class="row-fluid">
   	<div class="span12">
   		<div class="widget-box">
@@ -342,8 +339,45 @@ function searchName(str,id) {
 		}
 	}
 }
+function getExpOptions() {
+	if(document.getElementById('ddd').value=="")
+		{
+		   alert("fill something in popup");
+		}
+	else
+		{
+		var newoption=document.getElementById('ddd').value;
+		var xhttp;
+		xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				
+				var newdata = this.responseText.split(",");
+				alert(newdata[0]+","+newdata[1]);
+				addNowFunction(newdata[0],newdata[1]);
+				getReveal();
+				document.getElementById('ddd').value="";
+					
+				}
+			};
+		xhttp.open("POST","/SAMERP/Expenses.do?addExpTypeNewOption="+document.getElementById('ddd').value, true);
+		xhttp.send();
 
-</script>]
+			
+		}
+		
+}
+function addNowFunction(id,value)
+{
+	var option = document.createElement("option");
+    option.text = value;
+    option.value = id;
+    var select = document.getElementById("expenseType");
+    select.appendChild(option);
+    var element = document.getElementById("expenseType");
+    element.value =id;
+    }
+</script>	
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.ui.custom.js"></script> 
@@ -352,9 +386,9 @@ function searchName(str,id) {
 <script src="/SAMERP/config/js/bootstrap-datepicker.js"></script> 
 <script src="/SAMERP/config/js/jquery.toggle.buttons.js"></script> 
 <script src="/SAMERP/config/js/masked.js"></script> 
-<script src="/SAMERP/config/js/jquery.uniform.js"></script> 
-<script src="/SAMERP/config/js/select2.min.js"></script> 
+<script src="/SAMERP/config/js/jquery.uniform.js"></script>
 <script src="/SAMERP/config/js/matrix.js"></script> 
+<script src="/SAMERP/config/js/select2.min.js"></script> 
 <script src="/SAMERP/config/js/matrix.form_common.js"></script> 
 <script src="/SAMERP/config/js/wysihtml5-0.3.0.js"></script> 
 <script src="/SAMERP/config/js/jquery.peity.min.js"></script> 

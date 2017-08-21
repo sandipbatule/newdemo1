@@ -40,6 +40,29 @@ public class Expenses extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
+		if(request.getParameter("addExpTypeNewOption")!=null)
+				{
+					GenericDAO gd=new GenericDAO();
+					String newtype=request.getParameter("addExpTypeNewOption");
+					//check if present
+					// write your code here
+					int status=0;
+					String query="INSERT INTO `expenses_type`(`expenses_type_name`) VALUES ('"+newtype+"')";
+					status=gd.executeCommand(query);
+					if(status==1)
+					{
+						int substatus=0;
+						String newsubquery="SELECT `expenses_type_id`, `expenses_type_name` FROM `expenses_type` "
+								+ "WHERE expenses_type_name='"+newtype+"'";
+						List demoList=gd.getData(newsubquery);
+						if(!demoList.isEmpty())
+						{
+							Iterator itr=demoList.iterator();
+							while(itr.hasNext())
+							out.print(itr.next()+","+itr.next());
+						}
+					}
+				}
 		
 		//for finding name and fetch list
 		

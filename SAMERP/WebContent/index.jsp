@@ -29,7 +29,7 @@
 </div>
 <!--close-top-serch-->
 <!--sidebar-menu-->
-<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+<div id="sidebar"><a href="#" class="visible-phone"><i class="fa fa-home"></i> Dashboard</a>
   <ul>
     <li class="active"><a href="/SAMERP/index.jsp"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Settings</span> <span class="label label-important">7</span></a>
@@ -106,7 +106,7 @@ himanshu patel
 <script src="/SAMERP/config/js/matrix.js"></script> 
 <script src="/SAMERP/config/js/matrix.dashboard.js"></script> 
 <script src="/SAMERP/config/js/jquery.gritter.min.js"></script> 
-<script src="/SAMERP/config//SAMERP/config/js/matrix.interface.js"></script> 
+<script src="/SAMERP/config/js/matrix.interface.js"></script> 
 <script src="/SAMERP/config/js/matrix.chat.js"></script> 
 <script src="/SAMERP/config/js/jquery.validate.js"></script> 
 <script src="/SAMERP/config/js/matrix.form_validation.js"></script> 
