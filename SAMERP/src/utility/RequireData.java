@@ -11,7 +11,11 @@ public class RequireData
 	//starts your methods here
 	
 	// himanshu start
-	
+	public List getCustomerList() {
+		String Customer_query="SELECT * FROM `customer_master`";
+		List CustomerList=gd.getData(Customer_query);
+		return CustomerList;
+	}
 		//--himanshu end
 	
 	// mukesh start
