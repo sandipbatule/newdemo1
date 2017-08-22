@@ -1,11 +1,11 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="utility.RequireData"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SAMERP PROJECT</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/SAMERP/config/css/bootstrap-responsive.min.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/fullcalendar.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-style.css" />
+<link rel="stylesheet" href="/SAMERP/config/css/uniform.css" />
 <link rel="stylesheet" href="/SAMERP/config/css/matrix-media.css" />
 <link href="/SAMERP/config/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/SAMERP/config/css/jquery.gritter.css" />
@@ -61,6 +62,7 @@
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
 </style>
 <body onload="setFocusToTextBox()">
 
@@ -127,7 +129,7 @@
           <h5>Add Organization</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="/SAMERP/AddOrganization" method="post" class="form-horizontal">
+          <form action="/SAMERP/AddOrganization" method="post" class="form-horizontal" enctype="multipart/form-data">
             <div class="control-group">
               <label class="control-label"> Organization Name :</label>
               <div class="controls">
@@ -153,16 +155,18 @@
                 <input type="text" name="email" class="span6" placeholder="Email" />
               </div>
             </div>
+
             <div class="control-group">
-              <label class="control-label">Logo :</label>
+              <label class="control-label">Upload Logo</label>
               <div class="controls">
-                <input type="text" name="logo" class="span6" placeholder="Logo" onkeyup="this.value=this.value.toUpperCase()" />
+                <input type="file" name="logo_upload" />
               </div>
             </div>
+            
             <div class="form-actions" >
             <button type="submit" name="insertorganizer" class="btn btn-success"         style="position:relative; right:700px; float:right;">Submit</button>
               <a href="/SAMERP/index.jsp"><button type="button" class="btn btn-danger " style="position:relative; right:550px;   float:right;">Exit</button></a>
-            </div>
+            </div>  
           </form>
         </div>
       </div>
@@ -204,6 +208,7 @@ function setFocusToTextBox() {
 	document.getElementById("organizationname").focus();
 	myFunction();
 }
+
 </script>
 <script src="/SAMERP/config/js/excanvas.min.js"></script> 
 <script src="/SAMERP/config/js/jquery.min.js"></script> 
