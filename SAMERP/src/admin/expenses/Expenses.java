@@ -40,6 +40,29 @@ public class Expenses extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
+		if(request.getParameter("addExpTypeNewOption")!=null)
+				{
+					GenericDAO gd=new GenericDAO();
+					String newtype=request.getParameter("addExpTypeNewOption");
+					//check if present
+					// write your code here
+					int status=0;
+					String query="INSERT INTO `expenses_type`(`expenses_type_name`) VALUES ('"+newtype+"')";
+					status=gd.executeCommand(query);
+					if(status==1)
+					{
+						int substatus=0;
+						String newsubquery="SELECT `expenses_type_id`, `expenses_type_name` FROM `expenses_type` "
+								+ "WHERE expenses_type_name='"+newtype+"'";
+						List demoList=gd.getData(newsubquery);
+						if(!demoList.isEmpty())
+						{
+							Iterator itr=demoList.iterator();
+							while(itr.hasNext())
+							out.print(itr.next()+","+itr.next());
+						}
+					}
+				}
 		
 		//for finding name and fetch list
 		
@@ -66,13 +89,13 @@ public class Expenses extends HttpServlet {
 			GenericDAO gd=new GenericDAO();
 			int getstatus=0;
 			String name=request.getParameter("name");
-			int amount=Integer.parseInt(request.getParameter("amount").toString());
+			double amount=Double.parseDouble(request.getParameter("amount").toString());
 			String type=request.getParameter("type");
 			String date=request.getParameter("date");
 			String[] arrayOfString = date.split("-");
 			String details=request.getParameter("reason");
 			String other_details=request.getParameter("other_details");
-			String query="INSERT INTO `expenses_master`(`name`, `amount`, `type`, `date`, `reason`, `other_details`) "
+			String query="INSERT INTO `expenses_master`(`name`, `amount`, `payment_mode`, `date`, `reason`, `other_details`) "
 					+ "VALUES ('"+name+"',"+amount+",'"+type+"','"+arrayOfString[2]+"-"+arrayOfString[1]+"-"+arrayOfString[0]+"','"+details+"','"+other_details+"')";
 			getstatus=gd.executeCommand(query);
 			if(getstatus!=0)
