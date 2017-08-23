@@ -36,10 +36,62 @@
 		document.getElementById("organization_name").focus();
 		showModal();
 	}
-	
 </script>
 
+
 <body onclick="setFocusToTextBox()">
+<!--Header-part-->
+<div id="header">
+  <h1><a href="dashboard.html">Matrix Admin</a></h1>
+</div>
+
+<!--start-top-serch-->
+<div id="search">
+
+<% if(request.getAttribute("status")!=null){ %>
+<div id="snackbar"><%=request.getAttribute("status")%></div>
+<%} %>
+
+  <button type="submit" class="tip-bottom">LOGOUT</button>
+</div>
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="fa fa-home"></i> Dashboard</a>
+  <ul>
+    <li class="active"><a href="/SAMERP/index.jsp"><i class="fa fa-home"></i> <span>Dashboard</span></a> </li>
+    <li class="submenu"> <a href="#"><i class="fa fa-th-list"></i> <span>Settings</span> <span class="label label-important">4</span></a>
+      <ul>
+        <li><a href="/SAMERP/jsp/admin/settings/addMaterialSuppliers.jsp">Add Material Suppliers</a></li>
+        <li><a href="/SAMERP/jsp/admin/settings/addVehicles.jsp">Add Vehicles</a></li>
+         <li><a href="/SAMERP/jsp/admin/settings/addClient.jsp">Add Clients</a></li>
+        <li><a href="/SAMERP/jsp/admin/settings/addAccountDetails.jsp">Add Account Details</a></li>
+        
+      </ul>
+    <li> <a href="charts.html"><i class="fa fa-signal"></i> <span>Charts &amp; graphs</span></a> </li>
+    <li> <a href="widgets.html"><i class="fa fa-inbox"></i> <span>Widgets</span></a> </li>
+    <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+    <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
+    <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="label label-important">3</span></a>
+      <ul>
+        <li><a href="form-common.html">Basic Form</a></li>
+        <li><a href="form-validation.html">Form with Validation</a></li>
+        <li><a href="form-wizard.html">Form with Wizard</a></li>
+      </ul>
+    </li>
+    <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+    <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
+    <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">5</span></a>
+      <ul>
+        <li><a href="index2.html">Dashboard2</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="calendar.html">Calendar</a></li>
+        <li><a href="invoice.html">Invoice</a></li>
+        <li><a href="chat.html">Chat option</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<!--sidebar-menu-->
 
 	<div id="content">
 		<div id="content-header">
@@ -61,178 +113,191 @@
 							</div>
 
 							<div class="widget-content nopadding">
-							
+
 								<form class="form-horizontal">
 									<div class="control-group">
 										<label class="control-label">Supplier Name:</label>
 										<div class="controls">
-											<input type="text" class="span4" placeholder="Enter Supplier Name" />											
-										</div>	
+											<input type="text" class="span4"
+												placeholder="Search..." />
+										</div>
 										<a href="#add-brand" data-toggle="modal"
 											style="color: white; font-size: 10px;" width="20px"><button
 												class="btn btn-primary btn-mini"
-												style="width: 40px; border: 2px black solid; position: relative; float: right; right: 500px; bottom: 38px; font-size: 20px;">+</button></a>																		
-									</div>									
-									
+												style="width: 40px; border: 2px black solid; position: relative; float: right; right: 490px; bottom: 38px; font-size: 20px;">+</button></a>
+									</div>
+
 									<table>
 										<tr>
 											<td><div class="control-group">
-										<label class="control-label">Supplier Name:</label>
-										<div class="controls">
-											<input type="text" style="width: 237px;" placeholder="Supplier Name" />
-										</div>
-									</div>
-									</td>
+													<label class="control-label">Name:</label>
+													<div class="controls">
+														<input type="text" style="width: 237px;"
+															placeholder="Supplier Name" />
+													</div>
+												</div></td>
 											<td>
-										<div class="control-group">
-											
-												<label class="control-label">Contact No:</label>
-												<div class="controls">
-													<input type="text" style="width: 237px;" placeholder="Contact No" />
-												</div>
-											</div></td>
-										</tr>
-									</table>												
-											
-									</div>
-								</form>
-							</div>
-						</div>
+												<div class="control-group">
 
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon"> <i class="icon-align-justify"></i>
-								</span>
-								<h5>Purchase Material Details</h5>
-							</div>
-
-							<div class="widget-content nopadding">
-								<form class="form-horizontal">
-								
-									<table>
-										<tr>
-											<td>
-											<div class="control-group">
-												<label class="control-label">Cheack No:</label>
-												<div class="controls">
-														<input type="text" style="width: 237px;" placeholder="Cheack No" />
+													<label class="control-label">Contact No:</label>
+													<div class="controls">
+														<input type="text" style="width: 237px;"
+															placeholder="Contact No" />
+													</div>
 												</div>
-											</div>
-											</td>											
-											<td>
-											<div class="control-group">
-												<label class="control-label">Date:</label>
-												<div class="controls">
-													<input type="date" style="width: 237px;" placeholder="" />
-												</div>
-									</div>
 											</td>
 										</tr>
 									</table>
-									
-									<div class="control-group">
-										<label class="control-label">Vehicle No:</label>
-										<div class="controls">
-											<input type="text" class="span1" placeholder="XX" />- <input
-												type="text" class="span1" placeholder="XX" />- <input
-												type="text" class="span1" placeholder="XX" />- <input
-												type="text" class="span2" placeholder="XXXX" />
-										</div>
-
-									</div>
-							
-									<div class="control-group">
-										<label class="control-label">Material Particals:</label>
-										<div class="controls">
-											<select>
-												<option>First option</option>
-												<option>Second option</option>
-												<option>Third option</option>
-												<option>Fourth option</option>
-												<option>Fifth option</option>
-												<option>Sixth option</option>
-												<option>Seventh option</option>
-												<option>Eighth option</option>
-											</select>
-											
-											<a href="#add_partical" data-toggle="modal" style="color: white; font-size: 10px;" width="20px">
-											<button	class="btn btn-primary btn-mini">+</button></a>
-										</div>
-										</div>
-								<table>
-									<tr>
-									<td>
-									<div class="control-group">
-										<label class="control-label">Quantity:</label>
-										<div class="controls">
-											<select>
-												<option>First option</option>
-												<option>Second option</option>
-												<option>Third option</option>
-												<option>Fourth option</option>
-												<option>Fifth option</option>
-												<option>Sixth option</option>
-												<option>Seventh option</option>
-												<option>Eighth option</option>
-											</select>
-											</div>
-											</div>
-											</td>
-											<td>
-											<div class="control-group">
-										<label class="control-label">Unit:</label>
-										<div class="controls">
-											<select>
-												<option>First option</option>
-												<option>Second option</option>
-												<option>Third option</option>
-												<option>Fourth option</option>
-												<option>Fifth option</option>
-												<option>Sixth option</option>
-												<option>Seventh option</option>
-												<option>Eighth option</option>
-											</select>
-											</div>
-											</div>
-											</td>
-									</div>
-									</tr>
-							</table>
-							<div class="form-actions">
-								<button type="submit" class="btn btn-success">Ok</button>
-								<button type="submit" class="btn btn-danger">Cancel</button>
 							</div>
 							</form>
-							</div>
 						</div>
 					</div>
 
-				
-			
-			<div class="widget-box">
-				<div class="widget-title">
-					<span class="icon"><i class="icon-th"></i></span>
-					<h5>View Purchase Details</h5>
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon"> <i class="icon-align-justify"></i>
+							</span>
+							<h5>Purchase Material Details</h5>
+						</div>
+
+						<div class="widget-content nopadding">
+							<form action="/SAMERP/PurchaseRawMaterials" class="form-horizontal">
+							<div class="form-group">
+								<table>
+									<tr>
+										<td>
+											<div class="control-group">
+												<label class="control-label">Chalan No:</label>
+												<div class="controls">
+													<input type="text" style="width: 237px;"
+														placeholder="Chalon No" required />
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="control-group">
+												<label class="control-label">Date:</label>
+											
+												<div class="controls">
+													<input type="date" style="width: 237px;" required/>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
+
+								<div class="control-group">
+									<label class="control-label">Vehicle No:</label>
+									<div class="controls">
+										<input type="text" class="span1" placeholder="XX" pattern="[a-z A-Z]*" required />- <input
+											type="text" class="span1" placeholder="XX" pattern="[0-9]*" required/>- <input
+											type="text" class="span1" placeholder="XX" pattern="[a-z A-Z]*" required/>- <input
+											type="text" class="span2" placeholder="XXXX" style="width: 90px" pattern="[0-9]*" required/>
+									</div>
+
+								</div>
+								<table>
+									<tr>
+										<td>
+											<div class="control-group">
+									<label class="control-label" >Select Material Perticular:</label>
+									<div class="controls">
+										<select style="width: 250px">
+											<option>First option</option>
+											<option>Second option</option>
+											<option>Third option</option>
+											<option>Fourth option</option>
+											<option>Fifth option</option>
+											<option>Sixth option</option>
+											<option>Seventh option</option>
+											<option>Eighth option</option>
+										</select> <a href="#add_partical" data-toggle="modal"
+											style="color:  white; font-size: 10px;" width="25px">
+											<button class="btn btn-primary btn-mini" border: 2px black solid;>+</button>
+										</a>		
+									</div>
+									
+								</div>			
+										</td>
+										<td>
+											<div class="control-group">
+												<label class="control-label" style="margin-left:-20px">Type:</label>
+												<div class="controls" style="margin-left: 182px">
+													<select style="width: 250px">
+														<option>killo</option>
+														<option>brass</option>
+														<option>ton</option>
+														<option>Bag</option>
+													</select>
+												</div>
+											</div>
+										</td>
+										</div>
+									</tr>
+									
+									<tr>
+										<td>
+											<div class="control-group" style="padding-left: 0px">
+												<label class="control-label">Quantity:</label>
+												<div class="controls">
+														<input type="text" style="width: 237px;"
+															placeholder="Quantity" required />
+													</div>
+											</div>
+										</td>
+										<td>
+											<div class="control-group">
+												<label class="control-label" style="margin-left:-20px">Unit:</label>
+												<div class="controls" style="margin-left: 182px">
+													<select style="width: 250px">
+														<option>killo</option>
+														<option>brass</option>
+														<option>ton</option>
+														<option>Bag</option>
+													</select>
+												</div>
+											</div>
+										</td>
+										</div>
+									</tr>
+								</table>
+								
+								</div>
+								<div class="form-actions" style="padding-left: 450px">
+									<button type="submit" class="btn btn-success">Submit</button>
+									<button type="submit" class="btn btn-danger">Exit</button>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
-				<div class="widget-content nopadding">
-					<table id="myTable" class="table table-bordered data-table">
-						<thead>
-							<tr>
-								<th>Pid</th>
-								<th>supplier name</th>
-								<th>cheack no</th>
-								<th>material particals</th>
-								<th>quantity</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-					</table>
+
+
+
+				<div class="widget-box">
+					<div class="widget-title">
+						<span class="icon"><i class="icon-th"></i></span>
+						<h5>View Purchase Details</h5>
+					</div>
+					<div class="widget-content nopadding">
+						<table id="myTable" class="table table-bordered data-table">
+							<thead>
+								<tr>
+									<th>Pid</th>
+									<th>supplier name</th>
+									<th>cheack no</th>
+									<th>material perticular</th>
+									<th>quantity</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
 				</div>
-			</div>
 			</div>
 
 		</div>
-</div>
+	</div>
 
 	<!-- supplier Modal  -->
 
@@ -266,7 +331,7 @@
 		</div>
 
 	</div>
-	
+
 	<!-- 	end modal -->
 
 	<!-- 	material modal -->
@@ -281,12 +346,13 @@
 					<h4 class="modal-title">Add Partical:</h4>
 				</div>
 				<div class="modal-body">
-				<p>
+					<p>
 					<form class="form-horizontal">
 						<div class="control-group">
 							<label class="control-label">Partical Name:</label>
 							<div class="controls">
-								<input type="text" class="span3" placeholder="Enter New Partical" />
+								<input type="text" class="span3"
+									placeholder="Enter New Partical" />
 							</div>
 						</div>
 					</form>
